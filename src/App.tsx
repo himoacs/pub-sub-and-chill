@@ -108,8 +108,8 @@ function GameContent() {
       {/* Scanline overlay */}
       <div className="scanline-overlay" />
 
-      {/* Audio controls - hidden during gameplay on mobile to avoid overlap */}
-      <div className={`fixed top-2 right-2 md:top-4 md:right-4 z-50 flex gap-1 md:gap-2 ${screen === 'playing' ? 'hidden md:flex' : 'flex'}`}>
+      {/* Audio controls */}
+      <div className="fixed top-2 right-2 md:top-4 md:right-4 z-50 flex gap-1 md:gap-2">
         <button
           onClick={() => {
             audioService.init();

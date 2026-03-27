@@ -146,19 +146,19 @@ export function QuestionCard({
       </div>
 
       {/* Question text */}
-      <div className="bg-arcade-cyan/10 border-2 md:border-4 border-arcade-cyan p-2 md:p-6 mb-2 md:mb-6 relative">
+      <div className="bg-arcade-purple/20 border-2 md:border-4 border-arcade-cyan p-3 md:p-6 mb-2 md:mb-6 relative rounded">
         {/* CRT scanline effect */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent animate-scanline" />
         </div>
         
-        <p className="font-arcade text-sm md:text-2xl text-white leading-relaxed relative z-10">
+        <p className="font-arcade text-base md:text-2xl text-white leading-relaxed relative z-10">
           {question.question}
         </p>
       </div>
 
       {/* Answer options */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-4">
         <AnimatePresence>
           {question.options.map((option, index) => (
             <motion.button
@@ -170,7 +170,7 @@ export function QuestionCard({
               disabled={disabled || selectedAnswer !== null || eliminatedOptions.includes(index)}
               style={getOptionStyle(index)}
               className={`
-                relative p-2 md:p-4 text-left
+                relative p-2.5 md:p-4 text-left
                 border-2 md:border-4 bg-arcade-darker/60
                 transition-all duration-200
                 disabled:cursor-not-allowed
@@ -184,7 +184,7 @@ export function QuestionCard({
               </span>
               
               {/* Option text */}
-              <p className="font-arcade text-xs md:text-lg text-white pr-4 md:pr-6">
+              <p className="font-arcade text-sm md:text-lg text-white pr-4 md:pr-6">
                 {option}
               </p>
 

@@ -53,7 +53,7 @@ export function PowerUps({
             disabled={disabled || !isAvailable}
             className={`
               relative flex flex-col items-center justify-center
-              w-12 h-12 md:w-20 md:h-20
+              w-14 h-14 md:w-20 md:h-20
               border-2 rounded-lg
               transition-all duration-200
               ${isAvailable && !disabled
@@ -77,8 +77,8 @@ export function PowerUps({
               {remaining}
             </div>
 
-            {/* Name (hidden on mobile) */}
-            <span className="hidden md:block font-arcade text-xs text-white/80 mt-1">
+            {/* Name */}
+            <span className="font-arcade text-[8px] md:text-xs text-white/80 mt-0.5 md:mt-1">
               {powerUp.name.split(' ')[0]}
             </span>
 

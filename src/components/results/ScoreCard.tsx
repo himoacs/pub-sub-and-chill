@@ -37,14 +37,9 @@ export function ScoreCard({
   });
 
   const gameUrl = 'https://himoacs.github.io/pub-sub-and-chill/';
-
-  const shareText = 
-    `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia!\n\n` +
-    `🏆 Reached Level ${level}: ${levelName}\n` +
-    `📊 Accuracy: ${accuracy}%\n` +
-    `🔥 Best Streak: ${longestStreak}\n\n` +
-    `#Solace #EventDrivenArchitecture #pubsubandchill\n\n` +
-    `${gameUrl}`;
+  
+  const shareTitle = 'Pub/Sub and Chill Trivia';
+  const shareText = `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia! Reached Level ${level}: ${levelName} with ${accuracy}% accuracy and a ${longestStreak} streak! #Solace #EventDrivenArchitecture`;
 
   const downloadImage = async (): Promise<boolean> => {
     if (!cardRef.current) {
@@ -93,11 +88,24 @@ export function ScoreCard({
     }
   };
 
-  const shareOnLinkedIn = () => {
-    // Encode the share text for URL
-    const encodedText = encodeURIComponent(shareText);
-    // Open LinkedIn with pre-filled post text
-    window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`, '_blank', 'noopener,noreferrer');
+  const shareOnLinkedIn = async () => {
+    // Try native Web Share API first (better mobile experience)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: gameUrl,
+        });
+        return;
+      } catch {
+        // User cancelled or API failed, fall through to LinkedIn share
+      }
+    }
+    
+    // Fallback to LinkedIn's sharing URL
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(gameUrl)}`;
+    window.open(shareUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Color constants for html2canvas compatibility (it doesn't support oklab)
