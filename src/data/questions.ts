@@ -9,7 +9,7 @@ export const LEVELS: Level[] = [
     difficulty: 'easy',
     description: 'Warm up with the basics',
     pointsPerQuestion: 100,
-    requiredPoints: 600, // Increased by 50% - need more correct answers
+    requiredPoints: 600, // Need 6 correct answers
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -1237,20 +1237,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'medium',
     topic: 'replay',
     explanation: 'Multiple consumers can independently replay from the same log.'
-  },
-  {
-    id: 'replay-7',
-    question: 'What is lossless failover of replay?',
-    options: [
-      'Replay continues from where it left off after switching to backup',
-      'Replay permanently stops on failure',
-      'Messages are lost during replay',
-      'Replay restarts from the beginning'
-    ],
-    correctAnswer: 0,
-    difficulty: 'hard',
-    topic: 'replay',
-    explanation: 'Lossless failover ensures replay continues seamlessly after HA failover.'
   },
   {
     id: 'replay-8',
