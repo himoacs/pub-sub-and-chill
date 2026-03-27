@@ -44,8 +44,8 @@ export function ScoreCard({
     `🏆 Reached Level ${level}: ${levelName}\n` +
     `📊 Accuracy: ${accuracy}%\n` +
     `🔥 Best Streak: ${longestStreak}\n\n` +
-    `#solace #pubsubandchill\n\n` +
-    `${gameUrl}`;
+    `Think you can beat me? ${gameUrl}\n\n` +
+    `#solace #pubsubandchill`;
 
   const downloadImage = async (): Promise<boolean> => {
     if (!cardRef.current) {
