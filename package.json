@@ -1,0 +1,51 @@
+{
+  "name": "pub-sub-and-chill",
+  "version": "1.0.0",
+  "description": "Solace Trivia Arcade Game",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himoacs/pub-sub-and-chill.git"
+  },
+  "keywords": [
+    "solace",
+    "pubsub",
+    "trivia",
+    "game",
+    "arcade"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/himoacs/pub-sub-and-chill/issues"
+  },
+  "homepage": "https://github.com/himoacs/pub-sub-and-chill#readme",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.27",
+    "framer-motion": "^12.38.0",
+    "howler": "^2.2.4",
+    "html2canvas": "^1.4.1",
+    "postcss": "^8.5.8",
+    "react": "^19.2.4",
+    "react-confetti": "^6.4.0",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "uuid": "^13.0.0",
+    "vite": "^8.0.3"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.12",
+    "@types/uuid": "^10.0.0"
+  }
+}
