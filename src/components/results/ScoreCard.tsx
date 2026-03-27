@@ -88,18 +88,10 @@ export function ScoreCard({
     }
   };
 
-  const shareOnLinkedIn = async () => {
-    // Copy the share text to clipboard first
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard failed, continue anyway
-    }
-    
-    // Open LinkedIn - user can paste the copied text
-    window.open('https://www.linkedin.com/feed/', '_blank', 'noopener,noreferrer');
+  const shareOnLinkedIn = () => {
+    // Use LinkedIn URL with pre-filled text (works on desktop)
+    const encodedText = encodeURIComponent(shareText);
+    window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`, '_blank', 'noopener,noreferrer');
   };
   
   const copyToClipboard = async () => {
@@ -284,7 +276,7 @@ export function ScoreCard({
       
       {/* Helper text */}
       <p className="text-center text-white/40 font-arcade text-[10px] mt-2">
-        Tap Copy, then paste in LinkedIn post
+        On mobile? Copy text first, then paste in LinkedIn
       </p>
     </div>
   );
