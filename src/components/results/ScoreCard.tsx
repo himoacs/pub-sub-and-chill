@@ -25,6 +25,7 @@ export function ScoreCard({
 }: ScoreCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const accuracy = calculateAccuracy(correctAnswers, wrongAnswers);
   const grade = getGrade(accuracy);
@@ -38,8 +39,7 @@ export function ScoreCard({
 
   const gameUrl = 'https://himoacs.github.io/pub-sub-and-chill/';
   
-  const shareTitle = 'Pub/Sub and Chill Trivia';
-  const shareText = `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia! Reached Level ${level}: ${levelName} with ${accuracy}% accuracy and a ${longestStreak} streak! #Solace #EventDrivenArchitecture`;
+  const shareText = `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia!\n\n🏆 Reached Level ${level}: ${levelName}\n📊 Accuracy: ${accuracy}%\n🔥 Best Streak: ${longestStreak}\n\nThink you can beat my score? Play now:\n${gameUrl}\n\n#Solace #EventDrivenArchitecture #pubsubandchill`;
 
   const downloadImage = async (): Promise<boolean> => {
     if (!cardRef.current) {
@@ -89,23 +89,27 @@ export function ScoreCard({
   };
 
   const shareOnLinkedIn = async () => {
-    // Try native Web Share API first (better mobile experience)
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: shareTitle,
-          text: shareText,
-          url: gameUrl,
-        });
-        return;
-      } catch {
-        // User cancelled or API failed, fall through to LinkedIn share
-      }
+    // Copy the share text to clipboard first
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard failed, continue anyway
     }
     
-    // Fallback to LinkedIn's sharing URL
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(gameUrl)}`;
-    window.open(shareUrl, '_blank', 'noopener,noreferrer');
+    // Open LinkedIn - user can paste the copied text
+    window.open('https://www.linkedin.com/feed/', '_blank', 'noopener,noreferrer');
+  };
+  
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard failed
+    }
   };
 
   // Color constants for html2canvas compatibility (it doesn't support oklab)
@@ -241,13 +245,13 @@ export function ScoreCard({
       </div>
 
       {/* Share buttons */}
-      <div className="flex gap-3 mt-4">
+      <div className="flex gap-2 mt-4">
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => downloadImage()}
           disabled={isGenerating}
-          className="flex-1 py-2 px-3 bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-base hover:bg-arcade-purple/30 transition-colors disabled:opacity-50"
+          className="py-2 px-3 bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-sm hover:bg-arcade-purple/30 transition-colors disabled:opacity-50"
         >
           {isGenerating ? '...' : '📥 Save'}
         </motion.button>
@@ -255,16 +259,33 @@ export function ScoreCard({
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          onClick={copyToClipboard}
+          className={`py-2 px-3 border-2 font-arcade text-sm transition-colors ${
+            copied 
+              ? 'bg-arcade-green/20 border-arcade-green text-arcade-green' 
+              : 'bg-arcade-cyan/20 border-arcade-cyan text-arcade-cyan hover:bg-arcade-cyan/30'
+          }`}
+        >
+          {copied ? '✓ Copied!' : '📋 Copy'}
+        </motion.button>
+        
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={shareOnLinkedIn}
-          disabled={isGenerating}
-          className="flex-1 py-2 px-3 bg-[#00C895] border-2 border-[#00C895] text-black font-arcade text-base font-bold hover:bg-[#00B085] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+          className="flex-1 py-2 px-3 bg-[#00C895] border-2 border-[#00C895] text-black font-arcade text-sm font-bold hover:bg-[#00B085] transition-colors flex items-center justify-center gap-1"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
-          Share on LinkedIn
+          LinkedIn
         </motion.button>
       </div>
+      
+      {/* Helper text */}
+      <p className="text-center text-white/40 font-arcade text-[10px] mt-2">
+        Tap Copy, then paste in LinkedIn post
+      </p>
     </div>
   );
 }
