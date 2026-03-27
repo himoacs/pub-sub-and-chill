@@ -108,21 +108,27 @@ function GameContent() {
       {/* Scanline overlay */}
       <div className="scanline-overlay" />
 
-      {/* Audio controls */}
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
+      {/* Audio controls - hidden during gameplay on mobile to avoid overlap */}
+      <div className={`fixed top-2 right-2 md:top-4 md:right-4 z-50 flex gap-1 md:gap-2 ${screen === 'playing' ? 'hidden md:flex' : 'flex'}`}>
         <button
-          onClick={toggleMute}
-          className="p-2 bg-arcade-dark/80 border-2 border-arcade-purple/50 hover:border-arcade-purple transition-colors"
+          onClick={() => {
+            audioService.init();
+            toggleMute();
+          }}
+          className="p-1 md:p-2 bg-arcade-dark/90 border border-arcade-purple/50 hover:border-arcade-purple transition-colors rounded"
           title={state.isMuted ? 'Unmute' : 'Mute'}
         >
-          <span className="text-xl">{state.isMuted ? '🔇' : '🔊'}</span>
+          <span className="text-sm md:text-xl">{state.isMuted ? '🔇' : '🔊'}</span>
         </button>
         <button
-          onClick={toggleMusic}
-          className="p-2 bg-arcade-dark/80 border-2 border-arcade-purple/50 hover:border-arcade-purple transition-colors"
+          onClick={() => {
+            audioService.init();
+            toggleMusic();
+          }}
+          className="p-1 md:p-2 bg-arcade-dark/90 border border-arcade-purple/50 hover:border-arcade-purple transition-colors rounded"
           title={state.musicEnabled ? 'Disable Music' : 'Enable Music'}
         >
-          <span className="text-xl">{state.musicEnabled ? '🎵' : '🎶'}</span>
+          <span className="text-sm md:text-xl">{state.musicEnabled ? '🎵' : '🎶'}</span>
         </button>
       </div>
 
@@ -302,7 +308,7 @@ function GameContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="h-screen flex flex-col p-2 md:p-4 pt-10 md:pt-4 overflow-hidden"
+            className="h-screen flex flex-col p-2 md:p-4 pt-2 md:pt-4 overflow-hidden"
           >
             {/* Header */}
             <div className="flex-shrink-0 mb-2 md:mb-6">
