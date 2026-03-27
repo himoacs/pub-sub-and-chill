@@ -33,8 +33,8 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
         </div>
 
         {/* Solace Logo - centered */}
-        <div className="flex-shrink-0 mx-2 md:mx-4 hidden md:block">
-          <SolaceLogo className="scale-75" />
+        <div className="flex-shrink-0 mx-2 md:mx-4">
+          <SolaceLogo className="scale-50 md:scale-75" />
         </div>
 
         {/* Total score */}
@@ -54,7 +54,7 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
       </div>
 
       {/* Progress bar */}
-      <div className="relative h-4 bg-arcade-dark border-2 border-arcade-purple/50 overflow-hidden">
+      <div className="relative h-3 md:h-4 bg-arcade-dark border-2 border-arcade-purple/50 overflow-hidden">
         <motion.div
           className="absolute inset-y-0 left-0"
           style={{ 

@@ -29,7 +29,7 @@ export function Timer({ timeRemaining, maxTime, isPaused = false }: TimerProps) 
   }
 
   return (
-    <div className="relative w-28 h-28 md:w-32 md:h-32">
+    <div className="relative w-20 h-20 md:w-32 md:h-32">
       {/* Background circle */}
       <svg className="w-full h-full transform -rotate-90">
         <circle
@@ -65,13 +65,13 @@ export function Timer({ timeRemaining, maxTime, isPaused = false }: TimerProps) 
       {/* Time display */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <motion.span
-          className={`font-pixel text-2xl md:text-3xl ${colorClass} ${isCritical ? 'animate-pulse' : ''}`}
+          className={`font-pixel text-xl md:text-3xl ${colorClass} ${isCritical ? 'animate-pulse' : ''}`}
           animate={isCritical ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 0.5, repeat: isCritical ? Infinity : 0 }}
         >
           {timeRemaining}
         </motion.span>
-        <span className="font-arcade text-xs text-white/50 uppercase">
+        <span className="font-arcade text-[10px] md:text-xs text-white/50 uppercase">
           {isPaused ? 'PAUSED' : 'SEC'}
         </span>
       </div>

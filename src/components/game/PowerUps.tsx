@@ -39,7 +39,7 @@ export function PowerUps({
   };
 
   return (
-    <div className="flex justify-center gap-4">
+    <div className="flex justify-center gap-2 md:gap-4">
       {powerUps.map((powerUp) => {
         const remaining = powerUp.available - powerUp.used;
         const isAvailable = remaining > 0;
@@ -53,7 +53,7 @@ export function PowerUps({
             disabled={disabled || !isAvailable}
             className={`
               relative flex flex-col items-center justify-center
-              w-16 h-16 md:w-20 md:h-20
+              w-12 h-12 md:w-20 md:h-20
               border-2 rounded-lg
               transition-all duration-200
               ${isAvailable && !disabled
@@ -64,14 +64,14 @@ export function PowerUps({
             title={`${powerUp.name}: ${powerUp.description}`}
           >
             {/* Icon */}
-            <span className="text-2xl">{powerUp.icon}</span>
+            <span className="text-lg md:text-2xl">{powerUp.icon}</span>
             
             {/* Count badge */}
             <div className={`
-              absolute -top-2 -right-2
-              w-6 h-6 rounded-full
+              absolute -top-1 -right-1 md:-top-2 md:-right-2
+              w-4 h-4 md:w-6 md:h-6 rounded-full
               flex items-center justify-center
-              font-pixel text-xs
+              font-pixel text-[10px] md:text-xs
               ${isAvailable ? 'bg-arcade-green text-black' : 'bg-gray-600 text-gray-400'}
             `}>
               {remaining}
