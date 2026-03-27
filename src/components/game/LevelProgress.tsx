@@ -24,29 +24,29 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
       <div className="flex justify-between items-start mb-2 md:mb-4">
         {/* Level info */}
         <div className="flex flex-col flex-1">
-          <span className="font-pixel text-[10px] md:text-xs text-arcade-purple mb-1">
+          <span className="font-pixel text-xs md:text-sm text-arcade-purple mb-1">
             LEVEL {level}/10
           </span>
-          <span className="font-arcade text-sm md:text-xl text-arcade-cyan">
+          <span className="font-arcade text-base md:text-xl text-arcade-cyan">
             {levelConfig?.name || 'Unknown'}
           </span>
         </div>
 
         {/* Solace Logo - centered */}
         <div className="flex-shrink-0 mx-2 md:mx-4">
-          <SolaceLogo className="scale-50 md:scale-75" />
+          <SolaceLogo className="scale-75 md:scale-100" />
         </div>
 
         {/* Total score */}
         <div className="text-right flex-1">
-          <span className="font-pixel text-[10px] md:text-xs text-arcade-yellow block mb-1">
+          <span className="font-pixel text-xs md:text-sm text-arcade-yellow block mb-1">
             SCORE
           </span>
           <motion.span
             key={score}
             initial={{ scale: 1.2 }}
             animate={{ scale: 1 }}
-            className="font-pixel text-lg md:text-2xl text-white"
+            className="font-pixel text-xl md:text-2xl text-white"
           >
             {formatScore(score)}
           </motion.span>

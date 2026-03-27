@@ -167,7 +167,7 @@ function GameContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="min-h-screen flex items-center justify-center p-4"
+            className="min-h-screen flex items-center justify-center p-4 pt-12 md:pt-4"
           >
             <div className="text-center max-w-md w-full">
               {/* Solace Logo */}
@@ -179,13 +179,13 @@ function GameContent() {
                 animate={{ y: 0 }}
                 className="mb-4 md:mb-8"
               >
-                <h1 className="font-pixel text-2xl md:text-4xl text-arcade-pink mb-1 md:mb-2">
+                <h1 className="font-pixel text-3xl md:text-4xl text-arcade-pink mb-1 md:mb-2">
                   PUB/SUB
                 </h1>
-                <h1 className="font-pixel text-2xl md:text-4xl text-arcade-cyan mb-2 md:mb-4">
+                <h1 className="font-pixel text-3xl md:text-4xl text-arcade-cyan mb-2 md:mb-4">
                   AND CHILL
                 </h1>
-                <p className="font-arcade text-base md:text-xl text-arcade-yellow">
+                <p className="font-arcade text-lg md:text-xl text-arcade-yellow">
                   SOLACE TRIVIA ARCADE
                 </p>
               </motion.div>
@@ -249,7 +249,7 @@ function GameContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="min-h-screen flex items-start md:items-center justify-center p-2 md:p-4 pt-8 md:pt-4 overflow-auto"
+            className="min-h-screen flex items-start md:items-center justify-center p-2 md:p-4 pt-12 md:pt-4 overflow-auto"
           >
             <div className="max-w-lg w-full bg-arcade-darker/80 border-4 border-arcade-cyan p-4 md:p-6">
               <h2 className="font-pixel text-lg md:text-2xl text-arcade-yellow text-center mb-4 md:mb-6">
@@ -308,7 +308,7 @@ function GameContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="h-screen flex flex-col p-2 md:p-4 pt-2 md:pt-4 overflow-hidden"
+            className="h-screen flex flex-col p-2 md:p-4 pt-12 md:pt-4 overflow-hidden"
           >
             {/* Header */}
             <div className="flex-shrink-0 mb-2 md:mb-6">
