@@ -39,7 +39,7 @@ export function ScoreCard({
 
   const gameUrl = 'https://himoacs.github.io/pub-sub-and-chill/';
   
-  const shareText = `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia!\n\n🏆 Reached Level ${level}: ${levelName}\n📊 Accuracy: ${accuracy}%\n🔥 Best Streak: ${longestStreak}\n\nThink you can beat my score? Play now:\n${gameUrl}\n\n#Solace #EventDrivenArchitecture #pubsubandchill`;
+  const shareText = `🎮 I just scored ${formatScore(score)} on Pub/Sub and Chill Trivia!\n\n🏆 Reached Level ${level}: ${levelName}\n📊 Accuracy: ${accuracy}%\n🔥 Best Streak: ${longestStreak}\n\nThink you can beat my score? Play now:\n${gameUrl}\n\n#solace #pubsubandchill #eventdrivenarchitecture`;
 
   const downloadImage = async (): Promise<boolean> => {
     if (!cardRef.current) {
