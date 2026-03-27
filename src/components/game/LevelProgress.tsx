@@ -34,7 +34,7 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
 
         {/* Solace Logo - centered */}
         <div className="flex-shrink-0 mx-2 md:mx-4">
-          <SolaceLogo className="scale-75 md:scale-100" />
+          <SolaceLogo />
         </div>
 
         {/* Total score */}

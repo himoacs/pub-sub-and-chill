@@ -152,7 +152,7 @@ export function QuestionCard({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent animate-scanline" />
         </div>
         
-        <p className="font-arcade text-lg md:text-2xl text-white leading-relaxed relative z-10">
+        <p className="font-arcade text-lg md:text-2xl leading-relaxed relative z-10" style={{ color: '#00C895' }}>
           {question.question}
         </p>
       </div>

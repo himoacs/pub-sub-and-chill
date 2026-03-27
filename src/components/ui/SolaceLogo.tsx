@@ -11,7 +11,7 @@ export function SolaceLogo({ className = '' }: { className?: string }) {
     >
       {/* SOLACE text in pixel font */}
       <span 
-        className="font-pixel text-lg tracking-wider"
+        className="font-pixel text-xl md:text-2xl tracking-wider"
         style={{ color: '#00C895' }}
       >
         SOLACE.
