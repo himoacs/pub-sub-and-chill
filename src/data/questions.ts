@@ -9,7 +9,7 @@ export const LEVELS: Level[] = [
     difficulty: 'easy',
     description: 'Warm up with the basics',
     pointsPerQuestion: 100,
-    requiredPoints: 400, // Need 4 out of 5 correct (80%)
+    requiredPoints: 600, // Increased by 50% - need more correct answers
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -19,7 +19,7 @@ export const LEVELS: Level[] = [
     difficulty: 'easy',
     description: 'Keep the streak going',
     pointsPerQuestion: 150,
-    requiredPoints: 600, // Need 4 out of 5 correct (80%)
+    requiredPoints: 900, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -29,7 +29,7 @@ export const LEVELS: Level[] = [
     difficulty: 'medium',
     description: 'Time to step it up',
     pointsPerQuestion: 200,
-    requiredPoints: 800, // Need 4 out of 5 correct (80%)
+    requiredPoints: 1200, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -39,7 +39,7 @@ export const LEVELS: Level[] = [
     difficulty: 'medium',
     description: 'The questions get tougher',
     pointsPerQuestion: 250,
-    requiredPoints: 1000, // Need 4 out of 5 correct (80%)
+    requiredPoints: 1500, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -49,7 +49,7 @@ export const LEVELS: Level[] = [
     difficulty: 'medium',
     description: 'Halfway to glory',
     pointsPerQuestion: 300,
-    requiredPoints: 1200, // Need 4 out of 5 correct (80%)
+    requiredPoints: 1800, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -59,7 +59,7 @@ export const LEVELS: Level[] = [
     difficulty: 'medium',
     description: 'Prove your expertise',
     pointsPerQuestion: 350,
-    requiredPoints: 1400, // Need 4 out of 5 correct (80%)
+    requiredPoints: 2100, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -69,7 +69,7 @@ export const LEVELS: Level[] = [
     difficulty: 'hard',
     description: 'Only the skilled survive',
     pointsPerQuestion: 400,
-    requiredPoints: 1600, // Need 4 out of 5 correct (80%)
+    requiredPoints: 2400, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -79,7 +79,7 @@ export const LEVELS: Level[] = [
     difficulty: 'hard',
     description: 'Advanced concepts ahead',
     pointsPerQuestion: 450,
-    requiredPoints: 1800, // Need 4 out of 5 correct (80%)
+    requiredPoints: 2700, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -89,7 +89,7 @@ export const LEVELS: Level[] = [
     difficulty: 'hard',
     description: 'One level from victory',
     pointsPerQuestion: 500,
-    requiredPoints: 2000, // Need 4 out of 5 correct (80%)
+    requiredPoints: 3000, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -99,7 +99,7 @@ export const LEVELS: Level[] = [
     difficulty: 'hard',
     description: 'The ultimate challenge',
     pointsPerQuestion: 600,
-    requiredPoints: 2400, // Need 4 out of 5 correct (80%)
+    requiredPoints: 3600, // Increased by 50%
     timeLimit: 60,
     questionsCount: 5,
   },
@@ -128,7 +128,7 @@ export const QUESTIONS: Question[] = [
     options: [
       'Only point-to-point',
       'Only publish-subscribe',
-      'Both publish-subscribe and point-to-point',
+      'Publish-subscribe, point-to-point, and request/reply',
       'Neither'
     ],
     correctAnswer: 2,
