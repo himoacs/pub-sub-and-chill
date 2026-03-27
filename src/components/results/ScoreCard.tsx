@@ -21,7 +21,7 @@ export function ScoreCard({
   correctAnswers,
   wrongAnswers,
   longestStreak,
-  achievements,
+  achievements: _achievements,
 }: ScoreCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -31,11 +31,6 @@ export function ScoreCard({
   const grade = getGrade(accuracy);
   const rank = getRankTitle(level);
   const levelName = LEVELS[level - 1]?.name || 'Unknown';
-  const date = new Date().toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
 
   const gameUrl = 'https://himoacs.github.io/pub-sub-and-chill/';
   
@@ -132,13 +127,13 @@ export function ScoreCard({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-sm mx-auto">
       {/* Shareable card - uses inline styles for html2canvas compatibility */}
       <div
         ref={cardRef}
         style={{ 
           position: 'relative',
-          padding: '16px',
+          padding: '12px',
           backgroundColor: colors.darker,
           border: `3px solid ${colors.cyan}`,
           overflow: 'hidden',
@@ -146,100 +141,81 @@ export function ScoreCard({
         }}
       >
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '12px', position: 'relative', zIndex: 10 }}>
+        <div style={{ textAlign: 'center', marginBottom: '8px', position: 'relative', zIndex: 10 }}>
           {/* Solace Logo */}
-          <p style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '16px', color: '#00C895', marginBottom: '8px' }}>
+          <p style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '18px', color: '#00C895', marginBottom: '4px' }}>
             SOLACE.
           </p>
           <h3 style={{ 
             fontFamily: '"Press Start 2P", cursive', 
-            fontSize: '10px', 
+            fontSize: '11px', 
             color: colors.pink,
-            marginBottom: '4px'
+            marginBottom: '2px'
           }}>
             PUB/SUB AND CHILL
           </h3>
-          <p style={{ fontFamily: '"VT323", monospace', fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>{date}</p>
         </div>
 
         {/* Player name */}
-        <div style={{ textAlign: 'center', marginBottom: '12px', position: 'relative', zIndex: 10 }}>
-          <p style={{ fontFamily: '"VT323", monospace', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Player</p>
-          <h2 style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '14px', color: colors.yellow }}>
+        <div style={{ textAlign: 'center', marginBottom: '8px', position: 'relative', zIndex: 10 }}>
+          <h2 style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '16px', color: colors.yellow }}>
             {nickname}
           </h2>
         </div>
 
         {/* Score */}
-        <div style={{ textAlign: 'center', marginBottom: '16px', position: 'relative', zIndex: 10 }}>
-          <p style={{ fontFamily: '"VT323", monospace', fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginBottom: '2px' }}>FINAL SCORE</p>
+        <div style={{ textAlign: 'center', marginBottom: '10px', position: 'relative', zIndex: 10 }}>
           <p style={{ 
             fontFamily: '"Press Start 2P", cursive', 
-            fontSize: '24px', 
+            fontSize: '32px', 
             color: colors.cyan,
-            textShadow: `0 0 10px ${colors.cyan}, 0 0 20px ${colors.cyan}`
+            textShadow: `0 0 10px ${colors.cyan}, 0 0 20px ${colors.cyan}`,
+            marginBottom: '2px'
           }}>
             {formatScore(score)}
           </p>
+          <p style={{ fontFamily: '"VT323", monospace', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>POINTS</p>
         </div>
 
-        {/* Stats grid */}
+        {/* Stats grid - 4 columns */}
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '8px', 
-          marginBottom: '16px', 
+          gridTemplateColumns: 'repeat(4, 1fr)', 
+          gap: '4px', 
+          marginBottom: '10px', 
           position: 'relative', 
           zIndex: 10 
         }}>
-          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '8px', border: `1px solid rgba(191,90,242,0.3)`, textAlign: 'center' }}>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '20px', color: colors.purple }}>{level}</p>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>LEVEL</p>
+          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '6px 4px', border: `1px solid rgba(191,90,242,0.3)`, textAlign: 'center' }}>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '24px', color: colors.purple }}>{level}</p>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>LVL</p>
           </div>
-          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '8px', border: `1px solid rgba(48,209,88,0.3)`, textAlign: 'center' }}>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '20px', color: getGradeColor() }}>{grade.grade}</p>
+          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '6px 4px', border: `1px solid rgba(48,209,88,0.3)`, textAlign: 'center' }}>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '24px', color: getGradeColor() }}>{grade.grade}</p>
             <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>GRADE</p>
           </div>
-          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '8px', border: `1px solid rgba(255,217,61,0.3)`, textAlign: 'center' }}>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '20px', color: colors.yellow }}>{accuracy}%</p>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>ACCURACY</p>
+          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '6px 4px', border: `1px solid rgba(255,217,61,0.3)`, textAlign: 'center' }}>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '24px', color: colors.yellow }}>{accuracy}%</p>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>ACC</p>
           </div>
-          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '8px', border: `1px solid rgba(255,159,10,0.3)`, textAlign: 'center' }}>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '20px', color: colors.orange }}>{longestStreak}</p>
+          <div style={{ backgroundColor: 'rgba(10,10,15,0.5)', padding: '6px 4px', border: `1px solid rgba(255,159,10,0.3)`, textAlign: 'center' }}>
+            <p style={{ fontFamily: '"VT323", monospace', fontSize: '24px', color: colors.orange }}>{longestStreak}</p>
             <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>STREAK</p>
           </div>
         </div>
 
         {/* Rank */}
         <div style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
-          <p style={{ fontFamily: '"VT323", monospace', fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '2px' }}>RANK</p>
-          <p style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '12px', color: colors.pink }}>
+          <p style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '14px', color: colors.pink }}>
             {rank}
           </p>
         </div>
 
-        {/* Achievements */}
-        {achievements.length > 0 && (
-          <div style={{ marginTop: '12px', textAlign: 'center', position: 'relative', zIndex: 10 }}>
-            <p style={{ fontFamily: '"VT323", monospace', fontSize: '10px', color: 'rgba(255,255,255,0.5)', marginBottom: '4px' }}>ACHIEVEMENTS</p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
-              {achievements.slice(0, 5).map((id) => (
-                <span key={id} style={{ fontSize: '14px' }}>🏅</span>
-              ))}
-              {achievements.length > 5 && (
-                <span style={{ fontFamily: '"VT323", monospace', fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>
-                  +{achievements.length - 5}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
-
         {/* Corner decorations */}
-        <div style={{ position: 'absolute', top: '6px', left: '6px', width: '12px', height: '12px', borderTop: `2px solid ${colors.pink}`, borderLeft: `2px solid ${colors.pink}` }} />
-        <div style={{ position: 'absolute', top: '6px', right: '6px', width: '12px', height: '12px', borderTop: `2px solid ${colors.pink}`, borderRight: `2px solid ${colors.pink}` }} />
-        <div style={{ position: 'absolute', bottom: '6px', left: '6px', width: '12px', height: '12px', borderBottom: `2px solid ${colors.pink}`, borderLeft: `2px solid ${colors.pink}` }} />
-        <div style={{ position: 'absolute', bottom: '6px', right: '6px', width: '12px', height: '12px', borderBottom: `2px solid ${colors.pink}`, borderRight: `2px solid ${colors.pink}` }} />
+        <div style={{ position: 'absolute', top: '4px', left: '4px', width: '10px', height: '10px', borderTop: `2px solid ${colors.pink}`, borderLeft: `2px solid ${colors.pink}` }} />
+        <div style={{ position: 'absolute', top: '4px', right: '4px', width: '10px', height: '10px', borderTop: `2px solid ${colors.pink}`, borderRight: `2px solid ${colors.pink}` }} />
+        <div style={{ position: 'absolute', bottom: '4px', left: '4px', width: '10px', height: '10px', borderBottom: `2px solid ${colors.pink}`, borderLeft: `2px solid ${colors.pink}` }} />
+        <div style={{ position: 'absolute', bottom: '4px', right: '4px', width: '10px', height: '10px', borderBottom: `2px solid ${colors.pink}`, borderRight: `2px solid ${colors.pink}` }} />
       </div>
 
       {/* Share buttons */}
