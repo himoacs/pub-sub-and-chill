@@ -56,6 +56,7 @@ const initialState: GameState = {
   fastestAnswer: Infinity,
   powerUps: INITIAL_POWER_UPS,
   eliminatedOptions: [],
+  usedQuestionIds: [],
   newAchievements: [],
   isMuted: false,
   musicEnabled: false,
@@ -68,7 +69,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, player: action.payload };
 
     case 'START_GAME': {
-      const questions = getQuestionsForLevel(1);
+      const questions = getQuestionsForLevel(1, []);
+      const questionIds = questions.map(q => q.id);
       return {
         ...state,
         status: 'playing',
@@ -86,6 +88,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         fastestAnswer: Infinity,
         powerUps: INITIAL_POWER_UPS.map(p => ({ ...p, used: 0 })),
         eliminatedOptions: [],
+        usedQuestionIds: questionIds,
         newAchievements: [],
       };
     }
@@ -134,12 +137,23 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       if (nextIndex >= state.questions.length) {
         // If time is still remaining, reload more questions to continue playing
         if (state.timeRemaining > 0) {
-          const moreQuestions = getQuestionsForLevel(state.currentLevel);
+          const moreQuestions = getQuestionsForLevel(state.currentLevel, state.usedQuestionIds);
+          // If no more unique questions available, just keep playing with what we have
+          if (moreQuestions.length === 0) {
+            // Check if can advance
+            if (canAdvanceToNextLevel(state.currentLevel, state.levelScore)) {
+              return { ...state, status: 'levelComplete', eliminatedOptions: [] };
+            } else {
+              return { ...state, status: 'gameOver', eliminatedOptions: [] };
+            }
+          }
+          const newQuestionIds = moreQuestions.map(q => q.id);
           return {
             ...state,
             questions: moreQuestions,
             currentQuestionIndex: 0,
             eliminatedOptions: [],
+            usedQuestionIds: [...state.usedQuestionIds, ...newQuestionIds],
           };
         }
         // Time ran out - check if can advance
@@ -168,7 +182,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         return { ...state, status: 'victory' };
       }
 
-      const questions = getQuestionsForLevel(nextLevel);
+      const questions = getQuestionsForLevel(nextLevel, state.usedQuestionIds);
+      const newQuestionIds = questions.map(q => q.id);
       const levelConfig = LEVELS[nextLevel - 1];
 
       return {
@@ -181,6 +196,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         timeRemaining: levelConfig.timeLimit,
         isTimerPaused: false,
         eliminatedOptions: [],
+        usedQuestionIds: [...state.usedQuestionIds, ...newQuestionIds],
       };
     }
 

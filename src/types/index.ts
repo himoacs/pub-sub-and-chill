@@ -104,6 +104,9 @@ export interface GameState {
   // Eliminated options (for 50/50)
   eliminatedOptions: number[];
   
+  // Track used questions to avoid repeats
+  usedQuestionIds: string[];
+  
   // Achievements unlocked this game
   newAchievements: Achievement[];
   

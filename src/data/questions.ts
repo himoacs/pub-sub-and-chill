@@ -3691,12 +3691,13 @@ function shuffleQuestionOptions(question: Question): Question {
 }
 
 // Function to get questions for a specific level
-export function getQuestionsForLevel(levelNumber: number): Question[] {
+export function getQuestionsForLevel(levelNumber: number, excludeIds: string[] = []): Question[] {
   const level = LEVELS[levelNumber - 1];
   if (!level) return [];
   
-  // Filter questions by the level's difficulty
-  const levelQuestions = QUESTIONS.filter(q => q.difficulty === level.difficulty);
+  // Filter questions by the level's difficulty and exclude already used questions
+  const excludeSet = new Set(excludeIds);
+  const levelQuestions = QUESTIONS.filter(q => q.difficulty === level.difficulty && !excludeSet.has(q.id));
   
   // Shuffle questions and pick the required number
   const shuffledQuestions = shuffleArray(levelQuestions);
