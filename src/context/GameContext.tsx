@@ -123,12 +123,46 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'SKIP_QUESTION':
+    case 'SKIP_QUESTION': {
+      const nextIndex = state.currentQuestionIndex + 1;
+      
+      // Check if we've skipped past all questions in this level
+      if (nextIndex >= state.questions.length) {
+        // If time is still remaining, reload more questions to continue playing
+        if (state.timeRemaining > 0) {
+          const moreQuestions = getQuestionsForLevel(state.currentLevel, state.usedQuestionIds);
+          // If no more unique questions available
+          if (moreQuestions.length === 0) {
+            // Check if can advance
+            if (canAdvanceToNextLevel(state.currentLevel, state.levelScore)) {
+              return { ...state, status: 'levelComplete', eliminatedOptions: [] };
+            } else {
+              return { ...state, status: 'gameOver', eliminatedOptions: [] };
+            }
+          }
+          const newQuestionIds = moreQuestions.map(q => q.id);
+          return {
+            ...state,
+            questions: moreQuestions,
+            currentQuestionIndex: 0,
+            eliminatedOptions: [],
+            usedQuestionIds: [...state.usedQuestionIds, ...newQuestionIds],
+          };
+        }
+        // Time ran out - check if can advance
+        if (canAdvanceToNextLevel(state.currentLevel, state.levelScore)) {
+          return { ...state, status: 'levelComplete', eliminatedOptions: [] };
+        } else {
+          return { ...state, status: 'gameOver', eliminatedOptions: [] };
+        }
+      }
+
       return {
         ...state,
-        currentQuestionIndex: state.currentQuestionIndex + 1,
+        currentQuestionIndex: nextIndex,
         eliminatedOptions: [],
       };
+    }
 
     case 'NEXT_QUESTION': {
       const nextIndex = state.currentQuestionIndex + 1;
