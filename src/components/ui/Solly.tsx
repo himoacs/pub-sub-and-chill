@@ -191,12 +191,12 @@ export function SollyWaving({ className = '', size = 180 }: { className?: string
         <style>
           {`
             @keyframes wave {
-              0%, 100% { transform: rotate(-8deg); }
-              50% { transform: rotate(12deg); }
+              0%, 100% { transform: rotate(-5deg); }
+              50% { transform: rotate(10deg); }
             }
             .waving-arm {
-              animation: wave 0.6s ease-in-out infinite;
-              transform-origin: 52px 28px;
+              animation: wave 0.8s ease-in-out infinite;
+              transform-origin: 47px 43px;
             }
           `}
         </style>
@@ -293,22 +293,27 @@ export function SollyWaving({ className = '', size = 180 }: { className?: string
         
         {/* === RIGHT ARM (waving) === */}
         <g className="waving-arm">
-          {/* Upper arm */}
-          <rect x="48" y="40" width="6" height="4" fill="#f8f8f8" />
-          <rect x="50" y="36" width="6" height="6" fill="#f8f8f8" />
-          <rect x="52" y="30" width="6" height="8" fill="#f8f8f8" />
+          {/* Shoulder connection */}
+          <rect x="44" y="40" width="6" height="6" fill="#f8f8f8" />
           
-          {/* Waving paw */}
-          <rect x="52" y="22" width="8" height="10" fill="#f0f0f0" />
+          {/* Upper arm - continuous */}
+          <rect x="46" y="34" width="6" height="8" fill="#f8f8f8" />
+          <rect x="48" y="28" width="6" height="8" fill="#f8f8f8" />
           
-          {/* Paw fingers spread */}
-          <rect x="50" y="20" width="4" height="4" fill="#f0f0f0" />
-          <rect x="54" y="18" width="4" height="4" fill="#f0f0f0" />
-          <rect x="58" y="20" width="4" height="4" fill="#f0f0f0" />
-          <rect x="60" y="24" width="4" height="4" fill="#f0f0f0" />
+          {/* Forearm */}
+          <rect x="50" y="22" width="6" height="8" fill="#f8f8f8" />
           
-          {/* Paw pad hints */}
-          <rect x="54" y="26" width="4" height="2" fill="#e8e8e8" />
+          {/* Paw - open palm */}
+          <rect x="48" y="14" width="10" height="10" fill="#f0f0f0" />
+          
+          {/* Fingers */}
+          <rect x="46" y="12" width="4" height="4" fill="#f0f0f0" />
+          <rect x="50" y="10" width="4" height="4" fill="#f0f0f0" />
+          <rect x="54" y="10" width="4" height="4" fill="#f0f0f0" />
+          <rect x="58" y="12" width="4" height="4" fill="#f0f0f0" />
+          
+          {/* Palm detail */}
+          <rect x="50" y="18" width="6" height="4" fill="#e8e8e8" />
         </g>
         
         {/* === FEET === */}

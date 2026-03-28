@@ -164,81 +164,83 @@ function GameContent() {
             exit={{ opacity: 0, y: -20 }}
             className="min-h-screen flex items-center justify-center p-4"
           >
-            <div className="flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-16">
-              {/* Left side - Logo, Title, Controls */}
-              <div className="text-center max-w-md w-full">
-                {/* Solace Logo */}
-                <SolaceLogo className="mb-2 md:mb-4" />
-                
-                {/* Title */}
-                <motion.div
-                  initial={{ y: -20 }}
-                  animate={{ y: 0 }}
-                  className="mb-4 md:mb-8"
-                >
-                  <h1 className="font-pixel text-3xl md:text-4xl text-arcade-pink mb-1 md:mb-2">
-                    PUB/SUB
-                  </h1>
-                  <h1 className="font-pixel text-3xl md:text-4xl text-arcade-cyan mb-2 md:mb-4">
-                    AND CHILL
-                  </h1>
-                  <p className="font-arcade text-lg md:text-xl text-arcade-yellow">
-                    SOLACE TRIVIA ARCADE
-                  </p>
-                </motion.div>
-
-                {/* Player info */}
-                {state.player && (
+            <div className="text-center max-w-2xl w-full">
+              {/* Header row - Logo/Title and Solly side by side */}
+              <div className="flex flex-row items-center justify-center gap-4 lg:gap-8 mb-4 md:mb-8">
+                {/* Left side - Logo and Title */}
+                <div className="text-center">
+                  {/* Solace Logo */}
+                  <SolaceLogo className="mb-2 md:mb-4" />
+                  
+                  {/* Title */}
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="mb-4 md:mb-8 bg-arcade-dark/50 border-2 border-arcade-cyan/30 p-3 md:p-4"
+                    initial={{ y: -20 }}
+                    animate={{ y: 0 }}
                   >
-                    <p className="font-arcade text-xs md:text-sm text-white/50">PLAYER</p>
-                    <p className="font-pixel text-base md:text-lg text-arcade-cyan mb-2">
-                      {state.player.nickname}
+                    <h1 className="font-pixel text-2xl md:text-4xl text-arcade-pink mb-1 md:mb-2">
+                      PUB/SUB
+                    </h1>
+                    <h1 className="font-pixel text-2xl md:text-4xl text-arcade-cyan mb-2 md:mb-4">
+                      AND CHILL
+                    </h1>
+                    <p className="font-arcade text-base md:text-xl text-arcade-yellow">
+                      SOLACE TRIVIA ARCADE
                     </p>
-                    <div className="flex justify-center gap-4 md:gap-6 text-xs md:text-sm">
-                      <div>
-                        <p className="font-arcade text-white/50">HIGH SCORE</p>
-                        <p className="font-pixel text-arcade-yellow">
-                          {state.player.totalScore.toLocaleString()}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="font-arcade text-white/50">BEST LEVEL</p>
-                        <p className="font-pixel text-arcade-green">
-                          {state.player.highestLevel}
-                        </p>
-                      </div>
-                    </div>
                   </motion.div>
-                )}
-
-                {/* Menu buttons */}
-                <div className="space-y-4">
-                  <PixelButton
-                    variant="warning"
-                    size="lg"
-                    fullWidth
-                    glow
-                    onClick={handleShowInstructions}
-                  >
-                    START GAME
-                  </PixelButton>
                 </div>
 
-                {/* Game info */}
-                <div className="mt-4 md:mt-8 font-arcade text-xs md:text-sm text-white/40">
-                  <p>10 Levels • 60 seconds each</p>
-                  <p>Test your Solace knowledge!</p>
+                {/* Right side - Solly mascot */}
+                <div className="hidden sm:block">
+                  <SollyWaving size={140} className="md:w-auto" />
                 </div>
               </div>
 
-              {/* Right side - Solly mascot (hidden on small screens) */}
-              <div className="hidden lg:block">
-                <SollyWaving size={220} />
+              {/* Player info */}
+              {state.player && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="mb-4 md:mb-8 bg-arcade-dark/50 border-2 border-arcade-cyan/30 p-3 md:p-4 max-w-md mx-auto"
+                >
+                  <p className="font-arcade text-xs md:text-sm text-white/50">PLAYER</p>
+                  <p className="font-pixel text-base md:text-lg text-arcade-cyan mb-2">
+                    {state.player.nickname}
+                  </p>
+                  <div className="flex justify-center gap-4 md:gap-6 text-xs md:text-sm">
+                    <div>
+                      <p className="font-arcade text-white/50">HIGH SCORE</p>
+                      <p className="font-pixel text-arcade-yellow">
+                        {state.player.totalScore.toLocaleString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-arcade text-white/50">BEST LEVEL</p>
+                      <p className="font-pixel text-arcade-green">
+                        {state.player.highestLevel}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Menu buttons */}
+              <div className="space-y-4 max-w-md mx-auto">
+                <PixelButton
+                  variant="warning"
+                  size="lg"
+                  fullWidth
+                  glow
+                  onClick={handleShowInstructions}
+                >
+                  START GAME
+                </PixelButton>
+              </div>
+
+              {/* Game info */}
+              <div className="mt-4 md:mt-8 font-arcade text-xs md:text-sm text-white/40">
+                <p>10 Levels • 60 seconds each</p>
+                <p>Test your Solace knowledge!</p>
               </div>
             </div>
           </motion.div>
