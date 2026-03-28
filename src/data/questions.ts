@@ -3221,7 +3221,7 @@ export const QUESTIONS: Question[] = [
       'To display configuration changes'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'medium',
     topic: 'bridges',
     explanation: 'Operational state shows the current health and connectivity status of the bridge.'
   },

@@ -54,10 +54,11 @@ export function PixelButton({
       title={title}
       whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
       whileTap={{ scale: disabled ? 1 : 0.98, y: disabled ? 0 : 1 }}
+      style={{ touchAction: 'manipulation' }}
       className={`
         font-pixel uppercase tracking-wider
         border-4 bg-arcade-darker/80 md:backdrop-blur-sm
-        transition-all duration-150 touch-action-manipulation
+        transition-all duration-150
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variantStyles[variant]}
         ${sizeStyles[size]}
