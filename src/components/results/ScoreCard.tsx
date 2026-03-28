@@ -221,9 +221,8 @@ export function ScoreCard({
       {/* Share buttons */}
       <div className="flex gap-2 mt-4">
         <motion.button
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onTap={() => !isGenerating && downloadImage()}
+          onClick={() => !isGenerating && downloadImage()}
           disabled={isGenerating}
           style={{ touchAction: 'manipulation' }}
           className="py-3 px-4 min-h-[44px] bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-sm hover:bg-arcade-purple/30 transition-colors disabled:opacity-50"
@@ -232,9 +231,8 @@ export function ScoreCard({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onTap={copyToClipboard}
+          onClick={copyToClipboard}
           style={{ touchAction: 'manipulation' }}
           className={`py-3 px-4 min-h-[44px] border-2 font-arcade text-sm transition-colors ${
             copied 
@@ -246,9 +244,8 @@ export function ScoreCard({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onTap={shareOnLinkedIn}
+          onClick={shareOnLinkedIn}
           style={{ touchAction: 'manipulation' }}
           className="flex-1 py-3 px-4 min-h-[44px] bg-[#00C895] border-2 border-[#00C895] text-black font-arcade text-sm font-bold hover:bg-[#00B085] transition-colors flex items-center justify-center gap-1"
         >

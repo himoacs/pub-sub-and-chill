@@ -68,7 +68,6 @@ export function PixelButton({
       `}
       disabled={disabled}
       onClick={onClick}
-      onTap={disabled ? undefined : onClick}
     >
       {children}
     </motion.button>
