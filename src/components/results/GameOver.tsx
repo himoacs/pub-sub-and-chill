@@ -18,6 +18,19 @@ export function GameOver({
   const { state, saveGameResults } = useGame();
   const [showConfetti, setShowConfetti] = useState(isVictory);
 
+  // Handle visibility change to prevent blank screen when returning from LinkedIn
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        // Page is being backgrounded - stop expensive animations
+        setShowConfetti(false);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
   useEffect(() => {
     // Play appropriate sound (with limited duration)
     if (isVictory) {

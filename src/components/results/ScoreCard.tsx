@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
 import { formatScore, getRankTitle, calculateAccuracy, getGrade } from '../../services/scoring';
 import { LEVELS } from '../../data/questions';
@@ -218,42 +217,39 @@ export function ScoreCard({
         <div style={{ position: 'absolute', bottom: '4px', right: '4px', width: '10px', height: '10px', borderBottom: `2px solid ${colors.pink}`, borderRight: `2px solid ${colors.pink}` }} />
       </div>
 
-      {/* Share buttons */}
+      {/* Share buttons - using regular buttons for reliable mobile touch */}
       <div className="flex gap-2 mt-4">
-        <motion.button
-          whileTap={{ scale: 0.98 }}
+        <button
           onClick={() => !isGenerating && downloadImage()}
           disabled={isGenerating}
           style={{ touchAction: 'manipulation' }}
-          className="py-3 px-4 min-h-[44px] bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-sm hover:bg-arcade-purple/30 transition-colors disabled:opacity-50"
+          className="py-3 px-4 min-h-[44px] bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-sm hover:bg-arcade-purple/30 active:scale-95 transition-all disabled:opacity-50"
         >
           {isGenerating ? '...' : '📥 Save'}
-        </motion.button>
+        </button>
         
-        <motion.button
-          whileTap={{ scale: 0.98 }}
+        <button
           onClick={copyToClipboard}
           style={{ touchAction: 'manipulation' }}
-          className={`py-3 px-4 min-h-[44px] border-2 font-arcade text-sm transition-colors ${
+          className={`py-3 px-4 min-h-[44px] border-2 font-arcade text-sm active:scale-95 transition-all ${
             copied 
               ? 'bg-arcade-green/20 border-arcade-green text-arcade-green' 
               : 'bg-arcade-cyan/20 border-arcade-cyan text-arcade-cyan hover:bg-arcade-cyan/30'
           }`}
         >
           {copied ? '✓ Copied!' : '📋 Copy'}
-        </motion.button>
+        </button>
         
-        <motion.button
-          whileTap={{ scale: 0.98 }}
+        <button
           onClick={shareOnLinkedIn}
           style={{ touchAction: 'manipulation' }}
-          className="flex-1 py-3 px-4 min-h-[44px] bg-[#00C895] border-2 border-[#00C895] text-black font-arcade text-sm font-bold hover:bg-[#00B085] transition-colors flex items-center justify-center gap-1"
+          className="flex-1 py-3 px-4 min-h-[44px] bg-[#00C895] border-2 border-[#00C895] text-black font-arcade text-sm font-bold hover:bg-[#00B085] active:scale-95 transition-all flex items-center justify-center gap-1"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
           Share Your Score on LinkedIn
-        </motion.button>
+        </button>
       </div>
       
       {/* Helper text */}
