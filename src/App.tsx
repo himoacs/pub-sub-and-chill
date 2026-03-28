@@ -174,9 +174,13 @@ function GameContent() {
                 <motion.div
                   initial={{ y: -20 }}
                   animate={{ y: 0 }}
+                  className="text-center"
                 >
-                  <h1 className="font-pixel text-xl md:text-3xl text-arcade-pink whitespace-nowrap">
-                    PUB/SUB <span className="text-arcade-cyan">AND CHILL</span>
+                  <h1 className="font-pixel text-xl md:text-3xl text-arcade-pink">
+                    PUB/SUB
+                  </h1>
+                  <h1 className="font-pixel text-xl md:text-3xl text-arcade-cyan">
+                    AND CHILL
                   </h1>
                 </motion.div>
 
