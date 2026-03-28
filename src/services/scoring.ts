@@ -100,22 +100,20 @@ export function getMaxLevelPoints(level: number): number {
   return levelConfig.pointsPerQuestion * levelConfig.questionsCount;
 }
 
-// Calculate level progress percentage (based on max possible points)
+// Calculate level progress percentage (based on required points to advance)
 export function getLevelProgress(
   currentLevel: number,
   levelScore: number
 ): number {
-  const maxPoints = getMaxLevelPoints(currentLevel);
-  if (maxPoints === 0) return 0;
-  return Math.min(100, Math.floor((levelScore / maxPoints) * 100));
+  const requiredPoints = getRequiredPoints(currentLevel);
+  if (requiredPoints === 0) return 0;
+  return Math.min(100, Math.floor((levelScore / requiredPoints) * 100));
 }
 
-// Calculate threshold position as percentage of max points
-export function getThresholdPosition(level: number): number {
-  const maxPoints = getMaxLevelPoints(level);
-  const requiredPoints = getRequiredPoints(level);
-  if (maxPoints === 0) return 0;
-  return Math.floor((requiredPoints / maxPoints) * 100);
+// Calculate threshold position as percentage (always at 100% since progress is based on required points)
+export function getThresholdPosition(_level: number): number {
+  // Threshold is at 100% since the progress bar fills to requiredPoints
+  return 100;
 }
 
 // Get level config

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { formatScore, getLevelProgress, getRequiredPoints, getMaxLevelPoints, getThresholdPosition } from '../../services/scoring';
+import { formatScore, getLevelProgress, getRequiredPoints } from '../../services/scoring';
 import { LEVELS } from '../../data/questions';
 import { SolaceLogo } from '../ui/SolaceLogo';
 
@@ -14,8 +14,6 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
   const levelConfig = LEVELS[level - 1];
   const progress = getLevelProgress(level, levelScore);
   const requiredPoints = getRequiredPoints(level);
-  const maxPoints = getMaxLevelPoints(level);
-  const thresholdPosition = getThresholdPosition(level);
   const hasPassedThreshold = levelScore >= requiredPoints;
 
   return (
@@ -53,13 +51,15 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
         </div>
       </div>
 
-      {/* Progress bar */}
+      {/* Progress bar - fills to 100% when required points reached */}
       <div className="relative h-3 md:h-4 bg-arcade-dark border-2 border-arcade-purple/50 overflow-hidden">
         <motion.div
           className="absolute inset-y-0 left-0"
           style={{ 
             minWidth: progress > 0 ? '8px' : '0',
-            background: 'linear-gradient(to right, #bf5af2, #ff2d95, #00f5ff)'
+            background: hasPassedThreshold 
+              ? 'linear-gradient(to right, #30d158, #30d158)' 
+              : 'linear-gradient(to right, #bf5af2, #ff2d95, #00f5ff)'
           }}
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
@@ -76,25 +76,12 @@ export function LevelProgress({ level, score, levelScore, streak }: LevelProgres
             />
           ))}
         </div>
-
-        {/* Threshold indicator */}
-        <div
-          className="absolute top-0 bottom-0 w-1"
-          style={{ 
-            left: `${thresholdPosition}%`, 
-            backgroundColor: hasPassedThreshold ? '#30d158' : '#ffd93d' 
-          }}
-          title={`${requiredPoints} pts needed to advance`}
-        />
       </div>
 
       {/* Progress info */}
       <div className="flex justify-between mt-1 md:mt-2">
         <span className="font-arcade text-xs md:text-sm text-white/60">
-          {formatScore(levelScore)} / {formatScore(maxPoints)} pts
-          {!hasPassedThreshold && (
-            <span className="text-arcade-yellow hidden md:inline"> ({formatScore(requiredPoints)} to advance)</span>
-          )}
+          {formatScore(levelScore)} / {formatScore(requiredPoints)} pts to advance
           {hasPassedThreshold && (
             <span className="text-arcade-green"> ✓</span>
           )}
