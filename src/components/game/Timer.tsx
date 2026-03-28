@@ -73,16 +73,18 @@ export function Timer({ timeRemaining, maxTime, isPaused = false }: TimerProps) 
       {/* Time display */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <motion.span
-          className={`font-pixel text-xl md:text-3xl ${isCritical ? 'animate-pulse' : ''}`}
+          className={`font-pixel text-3xl md:text-4xl ${isCritical ? 'animate-pulse' : ''}`}
           style={{ color: strokeColor, transition: 'color 0.3s ease' }}
           animate={isCritical ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 0.5, repeat: isCritical ? Infinity : 0 }}
         >
           {timeRemaining}
         </motion.span>
-        <span className="font-arcade text-[10px] md:text-xs text-white/50 uppercase">
-          {isPaused ? 'PAUSED' : 'SEC'}
-        </span>
+        {isPaused && (
+          <span className="font-arcade text-[10px] md:text-xs text-white/50 uppercase">
+            PAUSED
+          </span>
+        )}
       </div>
 
       {/* Freeze effect overlay */}
