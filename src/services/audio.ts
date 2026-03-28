@@ -38,6 +38,7 @@ class AudioService {
   private musicEnabled: boolean = false;
   private volume: number = 0.5;
   private initialized: boolean = false;
+  private unlocked: boolean = false;
 
   constructor() {
     // Check local storage for preferences (with error handling for private browsing)
@@ -57,16 +58,45 @@ class AudioService {
     }
   }
 
+  // Unlock audio context for mobile browsers (must be called from user gesture)
+  private unlock(): void {
+    // Always try to resume if context is suspended (can happen on mobile after inactivity)
+    if (Howler.ctx && Howler.ctx.state === 'suspended') {
+      Howler.ctx.resume().catch(() => {
+        // Ignore errors - audio might still work
+      });
+    }
+
+    // Only play silent sound once to unlock iOS
+    if (this.unlocked) return;
+    this.unlocked = true;
+
+    // Play a silent sound to unlock audio on iOS
+    // This is a workaround for iOS Safari which requires actual audio playback
+    const silentSound = new Howl({
+      src: ['data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA'],
+      volume: 0,
+      onend: () => {
+        silentSound.unload();
+      }
+    });
+    silentSound.play();
+  }
+
   // Initialize sounds (call this after user interaction due to browser autoplay policies)
   init(): void {
     if (this.initialized) return;
 
-    // Preload sound effects
+    // Unlock audio context for mobile
+    this.unlock();
+
+    // Preload sound effects with html5 for better mobile support
     Object.entries(SOUND_URLS).forEach(([key, url]) => {
       const sound = new Howl({
         src: [url],
         volume: this.volume,
         preload: true,
+        html5: true, // Better mobile compatibility
       });
       this.sounds.set(key as SoundType, sound);
     });
@@ -77,6 +107,7 @@ class AudioService {
       volume: this.volume * 0.3, // Lower volume for background music
       loop: true,
       preload: true,
+      html5: true, // Better mobile compatibility
     });
 
     // Apply mute state
@@ -90,6 +121,9 @@ class AudioService {
     if (!this.initialized) this.init();
     if (this.isMuted) return;
 
+    // Try to unlock on every play (needed for mobile when context suspends)
+    this.unlock();
+
     const sound = this.sounds.get(type);
     if (sound) {
       sound.play();
@@ -100,6 +134,9 @@ class AudioService {
   playWithDuration(type: SoundType, maxDurationMs: number): void {
     if (!this.initialized) this.init();
     if (this.isMuted) return;
+
+    // Try to unlock on every play (needed for mobile when context suspends)
+    this.unlock();
 
     const sound = this.sounds.get(type);
     if (sound) {
