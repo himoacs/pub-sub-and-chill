@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { PixelButton } from '../ui/PixelButton';
 import { PixelInput } from '../ui/PixelInput';
 import { PixelCard } from '../ui/PixelCard';
+import { SolaceLogo } from '../ui/SolaceLogo';
 import { useGame } from '../../context/GameContext';
 
 interface NicknameEntryProps {
@@ -102,6 +103,9 @@ export function NicknameEntry({ onComplete }: NicknameEntryProps) {
           transition={{ duration: 0.5 }}
           className="text-center mb-4 md:mb-8"
         >
+          {/* Solace Logo */}
+          <SolaceLogo className="mb-2 md:mb-4" />
+          
           {/* Arcade-style title */}
           <h1 className="font-pixel text-xl md:text-3xl text-arcade-pink mb-1 md:mb-2 animate-pulse">
             PUB/SUB
@@ -148,10 +152,10 @@ export function NicknameEntry({ onComplete }: NicknameEntryProps) {
           </form>
 
           <div className="mt-4 md:mt-8 text-center">
-            <p className="font-arcade text-xs md:text-sm text-white/50">
+            <p className="font-arcade text-xs md:text-sm mt-1" style={{ color: '#00C895' }}>
               Test your Solace knowledge
             </p>
-            <p className="font-arcade text-xs md:text-sm text-white/50 mt-1">
+            <p className="font-arcade text-xs md:text-sm mt-1" style={{ color: '#00C895' }}>
               10 Levels • 60 seconds each • Power-ups
             </p>
           </div>

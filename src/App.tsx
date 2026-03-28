@@ -164,7 +164,7 @@ function GameContent() {
             exit={{ opacity: 0, y: -20 }}
             className="min-h-screen flex items-center justify-center p-4"
           >
-            <div className="text-center max-w-2xl w-full">
+            <div className="text-center max-w-md w-full mx-auto">
               {/* Header row - Logo/Title and Solly side by side */}
               <div className="flex flex-row items-center justify-center gap-4 lg:gap-8 mb-4 md:mb-8">
                 {/* Left side - Logo and Title */}
@@ -201,7 +201,7 @@ function GameContent() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="mb-4 md:mb-8 bg-arcade-dark/50 border-2 border-arcade-cyan/30 p-3 md:p-4 max-w-md mx-auto"
+                  className="mb-4 md:mb-8 bg-arcade-dark/50 border-2 border-arcade-cyan/30 p-3 md:p-4"
                 >
                   <p className="font-arcade text-xs md:text-sm text-white/50">PLAYER</p>
                   <p className="font-pixel text-base md:text-lg text-arcade-cyan mb-2">
@@ -225,7 +225,7 @@ function GameContent() {
               )}
 
               {/* Menu buttons */}
-              <div className="space-y-4 max-w-md mx-auto">
+              <div className="space-y-4">
                 <PixelButton
                   variant="warning"
                   size="lg"
@@ -238,7 +238,7 @@ function GameContent() {
               </div>
 
               {/* Game info */}
-              <div className="mt-4 md:mt-8 font-arcade text-xs md:text-sm text-white/40">
+              <div className="mt-4 md:mt-8 font-arcade text-xs md:text-sm" style={{ color: '#00C895' }}>
                 <p>10 Levels • 60 seconds each</p>
                 <p>Test your Solace knowledge!</p>
               </div>
