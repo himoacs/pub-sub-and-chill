@@ -24,7 +24,6 @@ export function ScoreCard({
 }: ScoreCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const accuracy = calculateAccuracy(correctAnswers, wrongAnswers);
   const grade = getGrade(accuracy);
@@ -92,16 +91,6 @@ export function ScoreCard({
     // Use LinkedIn URL with pre-filled text (works on desktop)
     const encodedText = encodeURIComponent(shareText);
     window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`, '_blank', 'noopener,noreferrer');
-  };
-  
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard failed
-    }
   };
 
   // Color constants for html2canvas compatibility (it doesn't support oklab)
@@ -225,19 +214,7 @@ export function ScoreCard({
           style={{ touchAction: 'manipulation' }}
           className="py-3 px-4 min-h-[44px] bg-arcade-purple/20 border-2 border-arcade-purple text-arcade-purple font-arcade text-sm hover:bg-arcade-purple/30 active:scale-95 transition-all disabled:opacity-50"
         >
-          {isGenerating ? '...' : '📥 Save'}
-        </button>
-        
-        <button
-          onClick={copyToClipboard}
-          style={{ touchAction: 'manipulation' }}
-          className={`py-3 px-4 min-h-[44px] border-2 font-arcade text-sm active:scale-95 transition-all ${
-            copied 
-              ? 'bg-arcade-green/20 border-arcade-green text-arcade-green' 
-              : 'bg-arcade-cyan/20 border-arcade-cyan text-arcade-cyan hover:bg-arcade-cyan/30'
-          }`}
-        >
-          {copied ? '✓ Copied!' : '📋 Copy'}
+          {isGenerating ? '...' : '📥 Download Score'}
         </button>
         
         <button
@@ -248,13 +225,13 @@ export function ScoreCard({
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
-          Share Your Score on LinkedIn
+          Share on LinkedIn
         </button>
       </div>
       
       {/* Helper text */}
       <p className="text-center text-white/40 font-arcade text-[10px] mt-2">
-        On mobile? Copy text first, then paste in LinkedIn
+        Download your score and share on LinkedIn!
       </p>
     </div>
   );
