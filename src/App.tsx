@@ -273,7 +273,7 @@ function GameContent() {
                 
                 <div className="flex items-start gap-2">
                   <span className="text-arcade-pink text-lg">🏆</span>
-                  <p className="text-xs md:text-sm">Earn <span className="text-arcade-yellow">achievements</span> and compete on the leaderboard!</p>
+                  <p className="text-xs md:text-sm">Earn <span className="text-arcade-yellow">achievements</span> and unlock all 10 levels!</p>
                 </div>
               </div>
 

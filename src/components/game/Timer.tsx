@@ -92,11 +92,8 @@ export function Timer({ timeRemaining, maxTime, isPaused = false }: TimerProps) 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="absolute inset-0 bg-arcade-cyan/20 rounded-full animate-pulse" />
-          <span className="text-2xl">❄️</span>
-        </motion.div>
+          className="absolute inset-0 rounded-full bg-arcade-cyan/20 animate-pulse pointer-events-none"
+        />
       )}
     </div>
   );
