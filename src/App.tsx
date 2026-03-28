@@ -165,35 +165,31 @@ function GameContent() {
             className="min-h-screen flex items-center justify-center p-4"
           >
             <div className="text-center max-w-md w-full mx-auto">
-              {/* Header row - Logo/Title and Solly side by side */}
-              <div className="flex flex-row items-center justify-center gap-4 lg:gap-8 mb-4 md:mb-8">
-                {/* Left side - Logo and Title */}
-                <div className="text-center">
-                  {/* Solace Logo */}
-                  <SolaceLogo className="mb-2 md:mb-4" />
-                  
-                  {/* Title */}
-                  <motion.div
-                    initial={{ y: -20 }}
-                    animate={{ y: 0 }}
-                  >
-                    <h1 className="font-pixel text-2xl md:text-4xl text-arcade-pink mb-1 md:mb-2">
-                      PUB/SUB
-                    </h1>
-                    <h1 className="font-pixel text-2xl md:text-4xl text-arcade-cyan mb-2 md:mb-4">
-                      AND CHILL
-                    </h1>
-                    <p className="font-arcade text-base md:text-xl text-arcade-yellow">
-                      SOLACE TRIVIA ARCADE
-                    </p>
-                  </motion.div>
-                </div>
+              {/* Solace Logo - centered */}
+              <SolaceLogo className="mb-2 md:mb-4" />
+              
+              {/* Title row with Solly */}
+              <div className="flex flex-row items-center justify-center gap-4 mb-2 md:mb-4">
+                {/* Title */}
+                <motion.div
+                  initial={{ y: -20 }}
+                  animate={{ y: 0 }}
+                >
+                  <h1 className="font-pixel text-xl md:text-3xl text-arcade-pink whitespace-nowrap">
+                    PUB/SUB <span className="text-arcade-cyan">AND CHILL</span>
+                  </h1>
+                </motion.div>
 
-                {/* Right side - Solly mascot */}
+                {/* Solly mascot */}
                 <div className="hidden sm:block">
-                  <SollyWaving size={140} className="md:w-auto" />
+                  <SollyWaving size={120} />
                 </div>
               </div>
+              
+              {/* Subtitle - centered */}
+              <p className="font-arcade text-base md:text-xl text-arcade-yellow mb-4 md:mb-8">
+                SOLACE TRIVIA ARCADE
+              </p>
 
               {/* Player info */}
               {state.player && (
