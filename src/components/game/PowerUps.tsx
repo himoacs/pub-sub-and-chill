@@ -65,17 +65,6 @@ export function PowerUps({
           >
             {/* Icon */}
             <span className="text-lg md:text-2xl">{powerUp.icon}</span>
-            
-            {/* Count badge */}
-            <div className={`
-              absolute -top-1 -right-1 md:-top-2 md:-right-2
-              w-4 h-4 md:w-6 md:h-6 rounded-full
-              flex items-center justify-center
-              font-pixel text-[10px] md:text-xs
-              ${isAvailable ? 'bg-arcade-green text-black' : 'bg-gray-600 text-gray-400'}
-            `}>
-              {remaining}
-            </div>
 
             {/* Name */}
             <span className="font-arcade text-[8px] md:text-xs text-white/80 mt-0.5 md:mt-1">

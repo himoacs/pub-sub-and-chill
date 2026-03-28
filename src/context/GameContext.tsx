@@ -25,7 +25,7 @@ const INITIAL_POWER_UPS: PowerUp[] = [
     name: '50/50',
     description: 'Remove 2 wrong answers',
     icon: '✂️',
-    available: 2,
+    available: 1,
     used: 0,
   },
   {
