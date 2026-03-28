@@ -185,9 +185,11 @@ function GameContent() {
                 </motion.div>
 
                 {/* Solly mascot */}
-                <div>
-                  <SollyWaving size={80} className="sm:hidden" />
-                  <SollyWaving size={120} className="hidden sm:block" />
+                <div className="sm:hidden">
+                  <SollyWaving size={80} />
+                </div>
+                <div className="hidden sm:block">
+                  <SollyWaving size={120} />
                 </div>
               </div>
               
