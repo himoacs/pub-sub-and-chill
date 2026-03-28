@@ -40,14 +40,21 @@ class AudioService {
   private initialized: boolean = false;
 
   constructor() {
-    // Check local storage for preferences
-    const savedMuted = localStorage.getItem('pubsub_muted');
-    const savedMusic = localStorage.getItem('pubsub_music');
-    const savedVolume = localStorage.getItem('pubsub_volume');
+    // Check local storage for preferences (with error handling for private browsing)
+    try {
+      const savedMuted = localStorage.getItem('pubsub_muted');
+      const savedMusic = localStorage.getItem('pubsub_music');
+      const savedVolume = localStorage.getItem('pubsub_volume');
 
-    this.isMuted = savedMuted === 'true';
-    this.musicEnabled = savedMusic === 'true';
-    this.volume = savedVolume ? parseFloat(savedVolume) : 0.5;
+      this.isMuted = savedMuted === 'true';
+      this.musicEnabled = savedMusic === 'true';
+      this.volume = savedVolume ? parseFloat(savedVolume) : 0.5;
+    } catch {
+      // localStorage not available (private browsing, etc.)
+      this.isMuted = false;
+      this.musicEnabled = false;
+      this.volume = 0.5;
+    }
   }
 
   // Initialize sounds (call this after user interaction due to browser autoplay policies)
@@ -151,7 +158,11 @@ class AudioService {
   toggleMute(): boolean {
     this.isMuted = !this.isMuted;
     Howler.mute(this.isMuted);
-    localStorage.setItem('pubsub_muted', String(this.isMuted));
+    try {
+      localStorage.setItem('pubsub_muted', String(this.isMuted));
+    } catch {
+      // Ignore localStorage errors
+    }
 
     if (this.isMuted) {
       this.pauseMusic();
@@ -165,7 +176,11 @@ class AudioService {
   // Toggle music
   toggleMusic(): boolean {
     this.musicEnabled = !this.musicEnabled;
-    localStorage.setItem('pubsub_music', String(this.musicEnabled));
+    try {
+      localStorage.setItem('pubsub_music', String(this.musicEnabled));
+    } catch {
+      // Ignore localStorage errors
+    }
 
     if (this.musicEnabled && !this.isMuted) {
       this.startMusic();
@@ -179,7 +194,11 @@ class AudioService {
   // Set volume (0 to 1)
   setVolume(vol: number): void {
     this.volume = Math.max(0, Math.min(1, vol));
-    localStorage.setItem('pubsub_volume', String(this.volume));
+    try {
+      localStorage.setItem('pubsub_volume', String(this.volume));
+    } catch {
+      // Ignore localStorage errors
+    }
 
     // Update all sound volumes
     this.sounds.forEach(sound => {
