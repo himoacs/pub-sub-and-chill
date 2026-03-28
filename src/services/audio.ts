@@ -193,12 +193,21 @@ class AudioService {
 
   // Toggle mute
   toggleMute(): boolean {
+    // Ensure audio is initialized and unlocked
+    if (!this.initialized) this.init();
+    this.unlock();
+
     this.isMuted = !this.isMuted;
     Howler.mute(this.isMuted);
     try {
       localStorage.setItem('pubsub_muted', String(this.isMuted));
     } catch {
       // Ignore localStorage errors
+    }
+
+    // Play a quick sound to confirm unmute worked (also helps unlock on mobile)
+    if (!this.isMuted) {
+      this.play('click');
     }
 
     if (this.isMuted) {
@@ -212,6 +221,10 @@ class AudioService {
 
   // Toggle music
   toggleMusic(): boolean {
+    // Ensure audio is initialized and unlocked
+    if (!this.initialized) this.init();
+    this.unlock();
+
     this.musicEnabled = !this.musicEnabled;
     try {
       localStorage.setItem('pubsub_music', String(this.musicEnabled));

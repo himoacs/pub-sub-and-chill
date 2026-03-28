@@ -111,20 +111,14 @@ function GameContent() {
       {/* Audio controls */}
       <div className="fixed top-2 right-2 md:top-4 md:right-4 z-50 flex gap-1 md:gap-2">
         <button
-          onClick={() => {
-            audioService.init();
-            toggleMute();
-          }}
+          onClick={toggleMute}
           className="p-1 md:p-2 bg-arcade-dark/90 border border-arcade-purple/50 hover:border-arcade-purple transition-colors rounded"
           title={state.isMuted ? 'Unmute' : 'Mute'}
         >
           <span className="text-sm md:text-xl">{state.isMuted ? '🔇' : '🔊'}</span>
         </button>
         <button
-          onClick={() => {
-            audioService.init();
-            toggleMusic();
-          }}
+          onClick={toggleMusic}
           className="p-1 md:p-2 bg-arcade-dark/90 border border-arcade-purple/50 hover:border-arcade-purple transition-colors rounded"
           title={state.musicEnabled ? 'Disable Music' : 'Enable Music'}
         >
