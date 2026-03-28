@@ -23,9 +23,9 @@ const variantStyles = {
 };
 
 const sizeStyles = {
-  sm: 'px-3 py-2 text-xs',
-  md: 'px-4 py-3 text-sm',
-  lg: 'px-6 py-4 text-base',
+  sm: 'px-3 py-2 text-xs min-h-[44px]',
+  md: 'px-4 py-3 text-sm min-h-[44px]',
+  lg: 'px-6 py-4 text-base min-h-[48px]',
 };
 
 const glowStyles = {
@@ -56,8 +56,8 @@ export function PixelButton({
       whileTap={{ scale: disabled ? 1 : 0.98, y: disabled ? 0 : 1 }}
       className={`
         font-pixel uppercase tracking-wider
-        border-4 bg-arcade-darker/80 backdrop-blur-sm
-        transition-all duration-150
+        border-4 bg-arcade-darker/80 md:backdrop-blur-sm
+        transition-all duration-150 touch-action-manipulation
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variantStyles[variant]}
         ${sizeStyles[size]}

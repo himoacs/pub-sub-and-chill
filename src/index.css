@@ -15,6 +15,12 @@
   box-sizing: border-box;
 }
 
+/* Mobile touch optimization - eliminate 300ms tap delay */
+button, a, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -242,9 +248,15 @@ body {
   }
   
   .pixel-btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.6rem;
+    padding: 1rem 1.5rem;
+    min-height: 48px;
+    font-size: 0.7rem;
   }
+}
+
+/* Ensure touch targets meet accessibility guidelines */
+button {
+  min-height: 44px;
 }
 
 /* Hide scrollbar but allow scrolling */

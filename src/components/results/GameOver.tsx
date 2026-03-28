@@ -38,15 +38,17 @@ export function GameOver({
 
   return (
     <div className="min-h-screen flex items-start md:items-center justify-center p-2 md:p-4 pt-4 md:pt-4 relative overflow-auto">
-      {/* Victory confetti */}
+      {/* Victory confetti - wrapped to ensure touches pass through */}
       {showConfetti && (
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          recycle={false}
-          numberOfPieces={500}
-          colors={['#ff2d95', '#00f5ff', '#ffd93d', '#bf5af2', '#30d158']}
-        />
+        <div style={{ pointerEvents: 'none', position: 'fixed', top: 0, left: 0, zIndex: 50 }}>
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={500}
+            colors={['#ff2d95', '#00f5ff', '#ffd93d', '#bf5af2', '#30d158']}
+          />
+        </div>
       )}
 
       <motion.div
