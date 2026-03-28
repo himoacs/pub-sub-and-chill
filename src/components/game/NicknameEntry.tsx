@@ -52,7 +52,7 @@ export function NicknameEntry({ onComplete }: NicknameEntryProps) {
               <button
                 className="font-arcade text-xs md:text-sm text-arcade-purple hover:text-arcade-pink transition-colors"
                 onClick={() => {
-                  localStorage.removeItem('pubsub_player');
+                  localStorage.removeItem('pubsub_and_chill_player');
                   window.location.reload();
                 }}
               >
