@@ -249,7 +249,7 @@ function GameContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="min-h-screen flex items-start md:items-center justify-center p-2 md:p-4 pt-12 md:pt-4 overflow-auto"
+            className="min-h-screen flex items-center justify-center p-2 md:p-4 py-8 md:py-4 overflow-auto"
           >
             <div className="max-w-lg w-full bg-arcade-darker/80 border-4 border-arcade-cyan p-4 md:p-6">
               <h2 className="font-pixel text-lg md:text-2xl text-arcade-yellow text-center mb-4 md:mb-6">
