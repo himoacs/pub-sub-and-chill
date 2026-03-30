@@ -2972,20 +2972,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'New messages can be interleaved with replay or delivered after replay completes.'
   },
   {
-    id: 'replay-21',
-    question: 'Is replay endpoint-specific in Solace?',
-    options: [
-      'No, replay can target any queue or topic',
-      'Yes, a consumer replays messages from its bound queue or topic endpoint',
-      'Only for topic endpoints',
-      'Only for exclusive queues'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'replay',
-    explanation: 'Replay logs are VPN-level resources, but queues must be enabled to log messages. Consumers replay messages specific to their bound endpoint.'
-  },
-  {
     id: 'replay-22',
     question: 'What is the purpose of replay with time-based start?',
     options: [
