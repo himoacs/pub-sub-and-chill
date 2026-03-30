@@ -2976,14 +2976,14 @@ export const QUESTIONS: Question[] = [
     question: 'Is replay endpoint-specific in Solace?',
     options: [
       'No, replay can target any queue or topic',
-      'Yes, replay is from a specific queue or topic endpoint to its consumers',
+      'Yes, a consumer replays messages from its bound queue or topic endpoint',
       'Only for topic endpoints',
       'Only for exclusive queues'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'replay',
-    explanation: 'Replay logs are configured per endpoint. A consumer replays messages from that specific endpoint\'s replay log.'
+    explanation: 'Replay logs are VPN-level resources, but queues must be enabled to log messages. Consumers replay messages specific to their bound endpoint.'
   },
   {
     id: 'replay-22',
