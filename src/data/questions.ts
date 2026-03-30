@@ -714,20 +714,6 @@ export const QUESTIONS: Question[] = [
     topic: 'protocols',
     explanation: 'TCP provides reliable transport for most Solace messaging protocols.'
   },
-  {
-    id: 'protocols-15',
-    question: 'How does Solace integrate with Kafka?',
-    options: [
-      'It replaces Kafka entirely',
-      'Via Kafka connectors and integration tools',
-      'Through REST API translation only',
-      'No integration available'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'protocols',
-    explanation: 'Solace provides Kafka connectors (source/sink) and integration features, but brokers do not natively speak Kafka protocol.'
-  },
 
   // ==================== LEVEL 4: TOPICS & WILDCARDS (15 questions) ====================
   {
