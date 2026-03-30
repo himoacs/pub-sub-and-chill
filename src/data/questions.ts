@@ -423,14 +423,14 @@ export const QUESTIONS: Question[] = [
     question: 'Does Solace support message priority?',
     options: [
       'No, all messages are equal priority',
-      'Yes, messages can have priority levels 0-255',
+      'Yes, messages can have priority levels 0-9',
       'Only for Direct messages',
       'Only in cloud deployments'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'delivery',
-    explanation: 'Solace supports message priority from 0-255, allowing higher priority messages to be delivered first.'
+    explanation: 'Solace supports ten levels of message priority from 0 (lowest) to 9 (highest), allowing higher priority messages to be delivered first.'
   },
   {
     id: 'delivery-10',
