@@ -720,7 +720,7 @@ export const QUESTIONS: Question[] = [
     options: [
       'It replaces Kafka entirely',
       'Via Kafka connectors and integration tools',
-      'Solace brokers natively speak Kafka protocol',
+      'Through REST API translation only',
       'No integration available'
     ],
     correctAnswer: 1,
@@ -763,14 +763,14 @@ export const QUESTIONS: Question[] = [
     question: 'What does the > wildcard match in a Solace topic subscription?',
     options: [
       'Exactly one level',
-      'Zero or more levels at the end of a topic',
+      'One or more levels at the end of a topic',
       'Only numeric values',
       'A single character'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'topics',
-    explanation: 'The > wildcard matches one or more levels at the end of a topic.'
+    explanation: 'The > wildcard matches one or more levels at the end of a topic. For example, a/> matches a/b and a/b/c but not just a.'
   },
   {
     id: 'topics-4',
