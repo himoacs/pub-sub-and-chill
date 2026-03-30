@@ -1465,20 +1465,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'TLS encryption can secure bridge connections between brokers.'
   },
   {
-    id: 'bridges-9',
-    question: 'What is compression in bridge connections?',
-    options: [
-      'Reducing message priority',
-      'Compressing message payloads to reduce bandwidth usage',
-      'Removing message headers',
-      'Deleting old messages'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'bridges',
-    explanation: 'Bridge compression reduces bandwidth by compressing message payloads between brokers.'
-  },
-  {
     id: 'bridges-10',
     question: 'How are topic subscriptions applied to bridges?',
     options: [
@@ -1763,20 +1749,6 @@ export const QUESTIONS: Question[] = [
 
   // ==================== LEVEL 9: HIGH AVAILABILITY (15 questions) ====================
   {
-    id: 'ha-1',
-    question: 'What is HA reconciliation in Solace?',
-    options: [
-      'Deleting duplicate messages',
-      'Syncing state between active and standby brokers after failover',
-      'Load balancing connections',
-      'Compressing messages'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'ha',
-    explanation: 'HA reconciliation synchronizes configuration and message state between HA pair members after reconnection.'
-  },
-  {
     id: 'ha-2',
     question: 'What is an HA pair in Solace?',
     options: [
@@ -1903,20 +1875,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'HA pairs must be the same broker type and software version.'
   },
   {
-    id: 'ha-11',
-    question: 'What is the difference between active-active and active-standby HA?',
-    options: [
-      'No difference, just terminology',
-      'Active-standby has one active broker; active-active has both processing traffic',
-      'Active-active is not possible for messaging',
-      'Only applies to cloud deployments'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'ha',
-    explanation: 'Active-standby HA has one active broker processing messages while standby is ready for failover. Active-active has both brokers processing traffic simultaneously. Solace uses active-standby HA.'
-  },
-  {
     id: 'ha-12',
     question: 'What is the typical failover time in Solace HA?',
     options: [
@@ -1957,20 +1915,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'medium',
     topic: 'ha',
     explanation: 'Manual failover can be triggered for planned maintenance activities.'
-  },
-  {
-    id: 'ha-15',
-    question: 'What is guaranteed messaging window in HA?',
-    options: [
-      'A time limit',
-      'Outstanding unacknowledged messages being synchronized',
-      'A GUI window',
-      'A configuration screen'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'ha',
-    explanation: 'The window represents messages being synchronized that may need recovery.'
   },
 
   // ==================== LEVEL 10: DISASTER RECOVERY (15 questions) ====================
@@ -3086,20 +3030,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'Bridges support both plain TCP and encrypted TLS connections.'
   },
   {
-    id: 'bridges-22',
-    question: 'What is bridge compression used for?',
-    options: [
-      'Compressing broker logs',
-      'Reducing bandwidth usage for bridge traffic',
-      'Compressing configuration files',
-      'Reducing CPU usage'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'bridges',
-    explanation: 'Bridge compression reduces bandwidth for WAN connections between brokers.'
-  },
-  {
     id: 'bridges-23',
     question: 'What is a bridge trust relationship?',
     options: [
@@ -3112,20 +3042,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'hard',
     topic: 'bridges',
     explanation: 'Trust relationships define authentication credentials and access permissions.'
-  },
-  {
-    id: 'bridges-24',
-    question: 'Can bridges have rate limiting?',
-    options: [
-      'No, bridges always run at full speed',
-      'Yes, egress rate can be limited',
-      'Only for Direct messages',
-      'Only during maintenance'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'bridges',
-    explanation: 'Bridge rate limiting can control bandwidth usage for WAN links.'
   },
   {
     id: 'bridges-25',
@@ -3242,20 +3158,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'DMR can span multiple cloud providers for true multi-cloud event routing.'
   },
   {
-    id: 'dmr-24',
-    question: 'What is the benefit of topic exclusions in DMR?',
-    options: [
-      'Faster message processing',
-      'Preventing specific topics from being routed through DMR',
-      'Encrypting sensitive topics',
-      'Compressing topic names'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'dmr',
-    explanation: 'Topic exclusions prevent specific topics from propagating through the mesh.'
-  },
-  {
     id: 'dmr-25',
     question: 'How does DMR handle duplicate messages?',
     options: [
@@ -3368,20 +3270,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'medium',
     topic: 'ha',
     explanation: 'HA can be configured on existing deployments with proper planning.'
-  },
-  {
-    id: 'ha-23',
-    question: 'What is HA reconciliation?',
-    options: [
-      'Billing process',
-      'Process of syncing data between HA pairs after a failover or split',
-      'Network troubleshooting',
-      'Configuration backup'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'ha',
-    explanation: 'Reconciliation ensures both brokers have consistent data after disruptions.'
   },
   {
     id: 'ha-24',
