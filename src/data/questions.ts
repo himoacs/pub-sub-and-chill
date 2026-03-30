@@ -2897,7 +2897,7 @@ export const QUESTIONS: Question[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     topic: 'queues',
-    explanation: 'Queue browsing is supported for exclusive queues and non-exclusive non-partitioned queues, but not partitioned queues.'
+    explanation: 'Queue browsing is supported for exclusive queues and non-partitioned non-exclusive queues. Partitioned queues do not support browsing.'
   },
   {
     id: 'queues-29',
