@@ -322,17 +322,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'delivery-2',
-    question: 'What are the acknowledgment modes for Guaranteed messaging?',
+    question: 'What are the two acknowledgment modes for Guaranteed messaging flows?',
     options: [
-      'Auto and Manual only',
-      'Auto-acknowledge, Client-acknowledge, and Duplicate-OK',
-      'Sync and Async only',
-      'There is only one acknowledgment mode'
+      'Sync and Async',
+      'Auto-acknowledgment and Client acknowledgment',
+      'Direct and Guaranteed',
+      'Persistent and Non-persistent'
     ],
     correctAnswer: 1,
-    difficulty: 'hard',
+    difficulty: 'medium',
     topic: 'delivery',
-    explanation: 'Guaranteed messaging supports multiple acknowledge modes controlling when messages are considered delivered.'
+    explanation: 'Solace supports Auto-acknowledgment (API automatically generates ACKs) and Client acknowledgment (application explicitly sends ACKs for each message).'
   },
   {
     id: 'delivery-3',
