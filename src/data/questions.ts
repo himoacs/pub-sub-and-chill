@@ -3625,17 +3625,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'dr-24',
-    question: 'Can multiple DR sites be configured?',
+    question: 'What is the standard Solace DR replication topology?',
     options: [
-      'No, only one DR site',
-      'Yes, for additional resilience',
-      'Only with hardware appliances',
-      'Only in cloud deployments'
+      'One primary site replicating to one DR site',
+      'Automatic replication to all cloud regions',
+      'Mesh replication between all sites',
+      'No predefined topology'
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     difficulty: 'hard',
     topic: 'dr',
-    explanation: 'Multiple DR sites can provide additional resilience for critical applications.'
+    explanation: 'Standard Solace DR uses active-standby replication between one primary site and one DR site.'
   },
   {
     id: 'dr-25',
