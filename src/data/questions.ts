@@ -292,17 +292,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'overview-15',
-    question: 'In Solace, what happens when a message is published to a topic?',
+    question: 'What is a best practice for designing topic hierarchies?',
     options: [
-      'Only one subscriber receives it',
-      'All subscribers to that topic receive it',
-      'The message is deleted immediately',
-      'The broker crashes'
+      'Use random strings',
+      'Organize hierarchically from general to specific (e.g., region/country/city)',
+      'Use only single-level topics',
+      'Always use wildcards'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'medium',
     topic: 'overview',
-    explanation: 'In pub/sub, all subscribers to a topic receive published messages.'
+    explanation: 'Topic hierarchies should flow from general to specific, enabling flexible subscription patterns.'
   },
 
   // ==================== LEVEL 2: MESSAGE DELIVERY (15 questions) ====================
@@ -322,17 +322,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'delivery-2',
-    question: 'Which delivery mode provides message persistence?',
+    question: 'What are the acknowledgment modes for Guaranteed messaging?',
     options: [
-      'Direct messaging',
-      'Guaranteed messaging',
-      'Both modes',
-      'Neither mode'
+      'Auto and Manual only',
+      'Auto-acknowledge, Client-acknowledge, and Duplicate-OK',
+      'Sync and Async only',
+      'There is only one acknowledgment mode'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'hard',
     topic: 'delivery',
-    explanation: 'Guaranteed messaging persists messages to ensure delivery even after failures.'
+    explanation: 'Guaranteed messaging supports multiple acknowledge modes controlling when messages are considered delivered.'
   },
   {
     id: 'delivery-3',
@@ -420,17 +420,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'delivery-9',
-    question: 'Which statement about Direct messaging is TRUE?',
+    question: 'Does Solace support message priority?',
     options: [
-      'Messages are persisted to disk',
-      'Messages require acknowledgment',
-      'Messages are delivered at most once',
-      'Messages survive broker restart'
+      'No, all messages are equal priority',
+      'Yes, messages can have priority levels 0-255',
+      'Only for Direct messages',
+      'Only in cloud deployments'
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     difficulty: 'medium',
     topic: 'delivery',
-    explanation: 'Direct messages are delivered at most once - they may be lost but never duplicated.'
+    explanation: 'Solace supports message priority from 0-255, allowing higher priority messages to be delivered first.'
   },
   {
     id: 'delivery-10',
@@ -448,7 +448,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'delivery-11',
-    question: 'What is the default message delivery guarantee for topic subscriptions?',
+    question: 'What is the default message delivery mode for topic subscriptions?',
     options: [
       'Guaranteed delivery',
       'Direct delivery',
@@ -458,7 +458,7 @@ export const QUESTIONS: Question[] = [
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'delivery',
-    explanation: 'Topic subscriptions use Direct delivery by default; queues are needed for Guaranteed.'
+    explanation: 'Topic subscriptions use Direct delivery by default; queues are needed for Guaranteed messaging.'
   },
   {
     id: 'delivery-12',
@@ -534,17 +534,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'protocols-2',
-    question: 'Which IoT-focused protocol does Solace support?',
+    question: 'What is a key feature of AMQP support in Solace?',
     options: [
-      'FTP',
-      'MQTT',
-      'SMTP',
-      'DNS'
+      'AMQP only works with queues',
+      'Full protocol support including transactions and message routing',
+      'AMQP is not supported',
+      'AMQP requires protocol conversion'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'medium',
     topic: 'protocols',
-    explanation: 'MQTT is a lightweight protocol widely used for IoT devices.'
+    explanation: 'Solace provides native AMQP 1.0 support with full protocol features including transactions.'
   },
   {
     id: 'protocols-3',
@@ -716,17 +716,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'protocols-15',
-    question: 'Does Solace support Kafka protocol?',
+    question: 'How does Solace integrate with Kafka?',
     options: [
-      'No, Kafka is a competitor',
-      'Yes, via Kafka protocol support and connectors',
-      'Only for on-premise deployments',
-      'Only for guaranteed messaging'
+      'It replaces Kafka entirely',
+      'Via Kafka connectors and integration tools',
+      'Solace brokers natively speak Kafka protocol',
+      'No integration available'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'protocols',
-    explanation: 'Solace supports Kafka protocol compatibility and provides Kafka connectors.'
+    explanation: 'Solace provides Kafka connectors (source/sink) and integration features, but brokers do not natively speak Kafka protocol.'
   },
 
   // ==================== LEVEL 4: TOPICS & WILDCARDS (15 questions) ====================
@@ -788,7 +788,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'topics-5',
-    question: 'What is the maximum recommended topic length in Solace?',
+    question: 'What is the maximum allowed topic length in Solace?',
     options: [
       '64 bytes',
       '250 bytes',
@@ -798,7 +798,7 @@ export const QUESTIONS: Question[] = [
     correctAnswer: 1,
     difficulty: 'hard',
     topic: 'topics',
-    explanation: 'Solace recommends topics be 250 bytes or less for optimal performance.'
+    explanation: 'The maximum topic length in Solace is 250 bytes (hard limit for SMF protocol).'
   },
   {
     id: 'topics-6',
@@ -844,31 +844,31 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'topics-9',
-    question: 'Where must the > wildcard be placed in a subscription?',
+    question: 'What is a recommended practice for topic naming?',
     options: [
-      'Anywhere in the topic',
-      'Only at the beginning',
-      'Only at the end',
-      'Only in the middle'
-    ],
-    correctAnswer: 2,
-    difficulty: 'medium',
-    topic: 'topics',
-    explanation: 'The > wildcard can only appear at the end of a subscription.'
-  },
-  {
-    id: 'topics-10',
-    question: 'How are topics used differently than queues in Solace?',
-    options: [
-      'Topics store messages, queues don\'t',
-      'Topics are for pub/sub, queues for point-to-point',
-      'Topics are slower than queues',
-      'Topics require authentication, queues don\'t'
+      'Use special characters and spaces freely',
+      'Use lowercase, forward slashes for hierarchy, avoid wildcards in names',
+      'Use wildcards in topic names',
+      'Keep topics as short as possible (single word)'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'topics',
-    explanation: 'Topics enable pub/sub (one-to-many), while queues enable point-to-point messaging.'
+    explanation: 'Topic best practices include lowercase, hierarchical structure with slashes, and avoiding wildcard characters in actual topic names.'
+  },
+  {
+    id: 'topics-10',
+    question: 'What is a shared subscription in Solace?',
+    options: [
+      'Multiple clients sharing the same session',
+      'Load-balanced topic subscription where one client in group receives each message',
+      'Broadcasting to multiple topics',
+      'Sharing queue access'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'topics',
+    explanation: 'Shared subscriptions allow multiple clients to share a subscription with load balancing across the group.'
   },
   {
     id: 'topics-11',
@@ -886,17 +886,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'topics-12',
-    question: 'Can you subscribe to the exact topic "orders/>" (literal)?',
+    question: 'What happens if you include > in the middle of a topic subscription?',
     options: [
-      'Yes, by escaping the wildcard',
-      'No, > is always a wildcard',
-      'Only in Direct mode',
-      'Only with special configuration'
+      'It matches zero or more levels from that point',
+      'The subscription is rejected as invalid',
+      'It matches exactly one level',
+      'It is treated as a literal character'
     ],
     correctAnswer: 1,
     difficulty: 'hard',
     topic: 'topics',
-    explanation: 'The > character is always treated as a wildcard in subscriptions.'
+    explanation: 'The > wildcard must be at the end of a subscription; placing it mid-topic results in an invalid subscription.'
   },
   {
     id: 'topics-13',
@@ -1140,17 +1140,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'queues-15',
-    question: 'How do you ensure message ordering in Solace?',
+    question: 'What is the primary way to ensure message ordering in Solace?',
     options: [
-      'Use multiple queues',
-      'Use an exclusive queue with single consumer',
+      'Use multiple queues with load balancing',
+      'Use an exclusive queue with a single consumer',
       'Use Direct messaging only',
-      'Ordering is not possible'
+      'Ordering requires special license'
     ],
     correctAnswer: 1,
     difficulty: 'hard',
     topic: 'queues',
-    explanation: 'Exclusive queues with a single consumer guarantee message ordering.'
+    explanation: 'Exclusive queues with a single consumer guarantee message ordering. Partitioned queues and message grouping can also maintain ordering within partitions.'
   },
 
   // ==================== LEVEL 6: MESSAGE REPLAY (15 questions) ====================
@@ -1237,6 +1237,20 @@ export const QUESTIONS: Question[] = [
     difficulty: 'medium',
     topic: 'replay',
     explanation: 'Multiple consumers can independently replay from the same log.'
+  },
+  {
+    id: 'replay-7',
+    question: 'What determines replay log size?',
+    options: [
+      'Number of consumers',
+      'Maximum memory/disk and time-based limits',
+      'Message priority',
+      'Queue depth'
+    ],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    topic: 'replay',
+    explanation: 'Replay log size is configured with max memory/disk space and time-based retention limits.'
   },
   {
     id: 'replay-8',
@@ -1466,17 +1480,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'bridges-9',
-    question: 'What is bridge failover?',
+    question: 'What is compression in bridge connections?',
     options: [
-      'Manually switching bridges',
-      'Automatic reconnection to backup bridge or broker',
-      'Disabling the bridge',
-      'Resetting bridge configuration'
+      'Reducing message priority',
+      'Compressing message payloads to reduce bandwidth usage',
+      'Removing message headers',
+      'Deleting old messages'
     ],
     correctAnswer: 1,
-    difficulty: 'hard',
+    difficulty: 'medium',
     topic: 'bridges',
-    explanation: 'Bridge failover automatically reconnects to backup destinations on failure.'
+    explanation: 'Bridge compression reduces bandwidth by compressing message payloads between brokers.'
   },
   {
     id: 'bridges-10',
@@ -1566,17 +1580,17 @@ export const QUESTIONS: Question[] = [
   // ==================== LEVEL 8: DMR (15 questions) ====================
   {
     id: 'dmr-1',
-    question: 'What does DMR stand for in Solace?',
+    question: 'What is required to form a DMR cluster?',
     options: [
-      'Direct Message Routing',
-      'Dynamic Message Routing',
-      'Distributed Message Relay',
-      'Data Message Replication'
+      'Only one broker',
+      'Multiple brokers with DMR enabled and cluster links configured',
+      'Special cloud license',
+      'External load balancer'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'medium',
     topic: 'dmr',
-    explanation: 'DMR stands for Dynamic Message Routing.'
+    explanation: 'DMR clusters require multiple brokers with DMR feature enabled and links configured between them.'
   },
   {
     id: 'dmr-2',
@@ -1706,17 +1720,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'dmr-11',
-    question: 'What is the DMR replication factor?',
+    question: 'How does DMR determine the best path between brokers?',
     options: [
-      'Number of message copies',
-      'Concept from Kafka, not applicable to DMR',
-      'Number of brokers',
-      'Message priority'
+      'Random selection',
+      'Uses link cost and subscription weights',
+      'Always uses direct connections',
+      'Based on message size'
     ],
     correctAnswer: 1,
     difficulty: 'hard',
     topic: 'dmr',
-    explanation: 'Replication factor is a Kafka concept; DMR uses subscription-based routing.'
+    explanation: 'DMR uses link costs and subscription routing to optimize message paths across the event mesh.'
   },
   {
     id: 'dmr-12',
@@ -1778,17 +1792,17 @@ export const QUESTIONS: Question[] = [
   // ==================== LEVEL 9: HIGH AVAILABILITY (15 questions) ====================
   {
     id: 'ha-1',
-    question: 'What is High Availability (HA) in Solace?',
+    question: 'What is HA reconciliation in Solace?',
     options: [
-      'Running multiple applications',
-      'Redundant broker configuration for fault tolerance',
-      'Load balancing only',
-      'Message compression'
+      'Deleting duplicate messages',
+      'Syncing state between active and standby brokers after failover',
+      'Load balancing connections',
+      'Compressing messages'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'hard',
     topic: 'ha',
-    explanation: 'HA provides redundant brokers to maintain availability during failures.'
+    explanation: 'HA reconciliation synchronizes configuration and message state between HA pair members after reconnection.'
   },
   {
     id: 'ha-2',
@@ -1918,17 +1932,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'ha-11',
-    question: 'What is active-active vs active-standby?',
+    question: 'What is the difference between active-active and active-standby HA?',
     options: [
-      'Same configuration',
-      'Active-standby has one standby; active-active processes on both',
-      'Active-active is not supported',
-      'Only applies to cloud'
+      'No difference, just terminology',
+      'Active-standby has one active broker; active-active has both processing traffic',
+      'Active-active is not possible for messaging',
+      'Only applies to cloud deployments'
     ],
     correctAnswer: 1,
     difficulty: 'hard',
     topic: 'ha',
-    explanation: 'Solace uses active-standby where only one broker processes messages at a time.'
+    explanation: 'Active-standby HA has one active broker processing messages while standby is ready for failover. Active-active has both brokers processing traffic simultaneously. Solace uses active-standby HA.'
   },
   {
     id: 'ha-12',
@@ -2486,17 +2500,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'delivery-26',
-    question: 'What is message TTL (Time To Live)?',
+    question: 'How is message TTL (Time To Live) configured?',
     options: [
-      'Message priority level',
-      'How long a message remains valid before expiring',
-      'Message encryption strength',
-      'Connection timeout'
+      'Only at broker level',
+      'Per-message, per-queue, or globally on broker',
+      'Only by the consuming client',
+      'TTL cannot be configured'
     ],
     correctAnswer: 1,
-    difficulty: 'medium',
+    difficulty: 'hard',
     topic: 'delivery',
-    explanation: 'TTL defines how long a message is considered valid and can be delivered.'
+    explanation: 'TTL can be set on individual messages, configured on queues, or set globally at the broker level.'
   },
   {
     id: 'delivery-27',
@@ -2987,17 +3001,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'replay-19',
-    question: 'Does replay work with Direct messaging?',
+    question: 'What is replay log trimming?',
     options: [
-      'Yes, for all Direct messages',
-      'No, only Guaranteed messages can be replayed',
-      'Only sometimes',
-      'Only with encryption enabled'
+      'Deleting all messages in the log',
+      'Removing old messages based on time or size limits',
+      'Compressing the replay log',
+      'Moving messages to archive storage'
     ],
     correctAnswer: 1,
-    difficulty: 'easy',
+    difficulty: 'medium',
     topic: 'replay',
-    explanation: 'Replay only works with Guaranteed messages that were persisted to the replay log.'
+    explanation: 'Replay log trimming removes older messages based on configured retention policies to manage storage.'
   },
   {
     id: 'replay-20',
