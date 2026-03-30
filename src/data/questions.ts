@@ -2972,46 +2972,18 @@ export const QUESTIONS: Question[] = [
     explanation: 'New messages can be interleaved with replay or delivered after replay completes.'
   },
   {
-    id: 'replay-19',
-    question: 'What is replay log trimming?',
-    options: [
-      'Deleting all messages in the log',
-      'Removing old messages based on time or size limits',
-      'Compressing the replay log',
-      'Moving messages to archive storage'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'replay',
-    explanation: 'Replay log trimming removes older messages based on configured retention policies to manage storage.'
-  },
-  {
-    id: 'replay-20',
-    question: 'What is trim on the replay log?',
-    options: [
-      'Compressing messages',
-      'Removing old messages to free up space',
-      'Encrypting messages',
-      'Speeding up replay'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'replay',
-    explanation: 'Trimming removes old messages from the replay log based on time or size limits.'
-  },
-  {
     id: 'replay-21',
-    question: 'Can you replay messages to a different queue than original?',
+    question: 'Is replay endpoint-specific in Solace?',
     options: [
-      'No, only to the same queue',
-      'Yes, replay can target different endpoints',
-      'Only to topic endpoints',
-      'Only with admin approval'
+      'No, replay can target any queue or topic',
+      'Yes, replay is from a specific queue or topic endpoint to its consumers',
+      'Only for topic endpoints',
+      'Only for exclusive queues'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'replay',
-    explanation: 'Messages can be replayed to different queues or topic endpoints as needed.'
+    explanation: 'Replay logs are configured per endpoint. A consumer replays messages from that specific endpoint\'s replay log.'
   },
   {
     id: 'replay-22',
@@ -3026,20 +2998,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'easy',
     topic: 'replay',
     explanation: 'Time-based replay starts from a specific timestamp, useful for recovery scenarios.'
-  },
-  {
-    id: 'replay-23',
-    question: 'What is message spool replay vs replay log?',
-    options: [
-      'They are the same',
-      'Spool replay replays undelivered messages; replay log replays historical messages',
-      'Replay log is faster',
-      'Spool replay uses more memory'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'replay',
-    explanation: 'Spool replay delivers pending spooled messages; replay log provides historical message access.'
   },
   {
     id: 'replay-24',
