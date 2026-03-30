@@ -2157,20 +2157,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'HA can be configured at each site, with DR replicating between sites.'
   },
   {
-    id: 'dr-13',
-    question: 'What is replication lag?',
-    options: [
-      'Broker startup time',
-      'Delay between primary and DR site message state',
-      'Network latency',
-      'Processing delay'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'dr',
-    explanation: 'Replication lag is the delay between primary and DR site data state.'
-  },
-  {
     id: 'dr-14',
     question: 'What happens to client connections during DR failover?',
     options: [
@@ -3594,34 +3580,6 @@ export const QUESTIONS: Question[] = [
     difficulty: 'easy',
     topic: 'dr',
     explanation: 'DR works across different cloud regions for disaster resilience.'
-  },
-  {
-    id: 'dr-22',
-    question: 'What causes replication lag in DR?',
-    options: [
-      'Message encryption',
-      'Network latency, high message rates, or resource constraints',
-      'Time zone differences',
-      'Configuration errors only'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'dr',
-    explanation: 'Replication lag is affected by network, load, and system resources.'
-  },
-  {
-    id: 'dr-23',
-    question: 'What is the recommended monitoring for DR?',
-    options: [
-      'No monitoring needed',
-      'Replication lag, sync state, and site connectivity',
-      'CPU usage only',
-      'Disk space only'
-    ],
-    correctAnswer: 1,
-    difficulty: 'easy',
-    topic: 'dr',
-    explanation: 'Monitoring lag, sync state, and connectivity ensures DR readiness.'
   },
   {
     id: 'dr-24',
