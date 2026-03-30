@@ -180,17 +180,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'overview-6',
-    question: 'What type of messaging patterns does Solace primarily enable?',
+    question: 'What is Solace PubSub+ Cloud?',
     options: [
-      'Only request-response',
-      'Publish-subscribe and message queuing',
-      'Only peer-to-peer',
-      'Only batch processing'
+      'A desktop application',
+      'A fully managed event broker service',
+      'A hardware appliance',
+      'A database service'
     ],
     correctAnswer: 1,
     difficulty: 'easy',
     topic: 'overview',
-    explanation: 'Solace enables both publish-subscribe (pub/sub) and message queuing patterns, providing flexible messaging capabilities.'
+    explanation: 'Solace PubSub+ Cloud is a fully managed event broker service available on major cloud providers.'
   },
   {
     id: 'overview-7',
@@ -2346,17 +2346,17 @@ export const QUESTIONS: Question[] = [
   // More Delivery Questions
   {
     id: 'delivery-16',
-    question: 'What is message spooling in Solace?',
+    question: 'What is the ingress flow in Solace?',
     options: [
-      'Message compression',
-      'Persisting messages to disk for guaranteed delivery',
-      'Routing messages to multiple destinations',
-      'Encrypting message content'
+      'Messages going out from the broker',
+      'Messages coming into the broker from publishers',
+      'Internal broker processing',
+      'Management API calls'
     ],
     correctAnswer: 1,
-    difficulty: 'medium',
+    difficulty: 'easy',
     topic: 'delivery',
-    explanation: 'Spooling persists messages to disk, enabling guaranteed delivery even after broker restart.'
+    explanation: 'Ingress is the inbound flow of messages from publishers into the broker.'
   },
   {
     id: 'delivery-17',
@@ -2618,17 +2618,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'protocols-24',
-    question: 'What is SEMP used for in Solace?',
+    question: 'What is the difference between SEMP v1 and SEMP v2?',
     options: [
-      'Message encryption',
-      'Broker management and monitoring via REST/SOAP',
-      'Message routing',
-      'Load balancing'
+      'v1 is faster than v2',
+      'v2 uses REST/JSON while v1 uses SOAP/XML',
+      'They are identical',
+      'v1 is for cloud only'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'protocols',
-    explanation: 'SEMP (Solace Element Management Protocol) is used for broker configuration and monitoring.'
+    explanation: 'SEMP v2 uses modern REST/JSON APIs while v1 uses legacy SOAP/XML format.'
   },
   {
     id: 'protocols-25',
@@ -2675,17 +2675,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'topics-18',
-    question: 'What is a topic endpoint in Solace?',
+    question: 'What is the benefit of using descriptive topic hierarchies?',
     options: [
-      'A client application',
-      'A durable subscription that stores messages for guaranteed delivery',
-      'A network interface',
-      'A management console'
+      'Faster message delivery',
+      'Enables meaningful filtering and easier debugging',
+      'Reduces message size',
+      'Improves encryption'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'topics',
-    explanation: 'Topic endpoints provide durable subscriptions with message persistence.'
+    explanation: 'Descriptive topic hierarchies like "orders/region/status" make filtering intuitive and debugging easier.'
   },
   {
     id: 'topics-19',
@@ -2717,17 +2717,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'topics-21',
-    question: 'What does the # wildcard match in a topic subscription?',
+    question: 'Can multiple * wildcards be used in a single Solace subscription?',
     options: [
-      'A single level only',
-      'Zero or more levels at that position and beyond',
-      'Exactly two levels',
-      'Nothing'
+      'No, only one wildcard allowed per subscription',
+      'Yes, multiple * wildcards can appear in different positions',
+      'Only if they are consecutive',
+      'Only in guaranteed messaging'
     ],
     correctAnswer: 1,
     difficulty: 'medium',
     topic: 'topics',
-    explanation: 'The # wildcard matches zero or more topic levels at the end of a subscription.'
+    explanation: 'Multiple * wildcards can appear in a subscription, like "*/orders/*/pending", matching one level each.'
   },
   {
     id: 'topics-22',
