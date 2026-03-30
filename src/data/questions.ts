@@ -1705,20 +1705,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'DMR only routes messages to brokers with matching subscriptions.'
   },
   {
-    id: 'dmr-11',
-    question: 'How does DMR determine the best path between brokers?',
-    options: [
-      'Random selection',
-      'Uses link cost and subscription weights',
-      'Always uses direct connections',
-      'Based on message size'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'dmr',
-    explanation: 'DMR uses link costs and subscription routing to optimize message paths across the event mesh.'
-  },
-  {
     id: 'dmr-12',
     question: 'How is DMR cluster membership managed?',
     options: [
@@ -3157,20 +3143,6 @@ export const QUESTIONS: Question[] = [
   },
 
   // More DMR Questions
-  {
-    id: 'dmr-16',
-    question: 'What is the DMR link cost used for?',
-    options: [
-      'Billing purposes',
-      'Determining the preferred path when multiple routes exist',
-      'Setting message size limits',
-      'Encryption strength'
-    ],
-    correctAnswer: 1,
-    difficulty: 'hard',
-    topic: 'dmr',
-    explanation: 'Link cost influences routing decisions; lower cost paths are preferred.'
-  },
   {
     id: 'dmr-17',
     question: 'Can DMR work with different Message VPNs?',
