@@ -2986,20 +2986,6 @@ export const QUESTIONS: Question[] = [
 
   // More Replay Questions
   {
-    id: 'replay-16',
-    question: 'What is the replay log window?',
-    options: [
-      'A GUI for viewing replays',
-      'The time or message range available for replay',
-      'A log file viewer',
-      'Network monitoring window'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'replay',
-    explanation: 'The replay window defines how far back messages can be replayed from the log.'
-  },
-  {
     id: 'replay-17',
     question: 'Can replay be triggered programmatically?',
     options: [
