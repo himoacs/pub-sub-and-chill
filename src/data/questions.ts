@@ -2942,20 +2942,6 @@ export const QUESTIONS: Question[] = [
     explanation: 'There is no chaining of DMQ behavior. If a message in the DMQ becomes dead again, it is deleted.'
   },
   {
-    id: 'queues-32',
-    question: 'What is a well-known queue in Solace?',
-    options: [
-      'A queue used by admin only',
-      'A queue with a commonly recognized name specified by the application',
-      'The default system queue',
-      'A high-priority queue'
-    ],
-    correctAnswer: 1,
-    difficulty: 'medium',
-    topic: 'queues',
-    explanation: 'A well-known queue has a commonly recognized name specified by the application, allowing applications to send messages to it without coordination.'
-  },
-  {
     id: 'queues-33',
     question: 'What triggers partition rebalancing in a partitioned queue?',
     options: [
