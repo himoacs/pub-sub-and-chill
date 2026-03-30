@@ -7,7 +7,6 @@ interface QuestionCardProps {
   onAnswer: (answerIndex: number) => void;
   eliminatedOptions: number[];
   questionNumber: number;
-  totalQuestions: number;
   disabled?: boolean;
 }
 
@@ -25,7 +24,6 @@ export function QuestionCard({
   onAnswer,
   eliminatedOptions,
   questionNumber,
-  totalQuestions,
   disabled = false,
 }: QuestionCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -138,7 +136,7 @@ export function QuestionCard({
       {/* Question header */}
       <div className="flex justify-between items-center mb-4">
         <span className="font-pixel text-xs text-arcade-purple">
-          Q{questionNumber}/{totalQuestions}
+          Q{questionNumber}
         </span>
         <span className="font-pixel text-xs text-arcade-cyan">
           {question.difficulty.toUpperCase()}

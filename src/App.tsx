@@ -345,7 +345,6 @@ function GameContent() {
                   onAnswer={handleAnswer}
                   eliminatedOptions={state.eliminatedOptions}
                   questionNumber={state.currentQuestionIndex + 1}
-                  totalQuestions={state.questions.length}
                   disabled={questionAnswered}
                 />
               </div>
