@@ -2857,6 +2857,146 @@ export const QUESTIONS: Question[] = [
     topic: 'queues',
     explanation: 'Queues can have topic subscriptions and receive direct publishes simultaneously.'
   },
+  {
+    id: 'queues-26',
+    question: 'Are anonymous queues durable or non-durable?',
+    options: [
+      'Durable',
+      'Non-durable',
+      'Depends on configuration',
+      'Only durable in HA mode'
+    ],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    topic: 'queues',
+    explanation: 'Anonymous queues are always non-durable. The queue and data are removed when the client unbinds or disconnects.'
+  },
+  {
+    id: 'queues-27',
+    question: 'Does an exclusive queue guarantee message order?',
+    options: [
+      'No, messages can be out of order',
+      'Yes, messages are always delivered in the order received',
+      'Only for Direct messages',
+      'Only with partitioning enabled'
+    ],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    topic: 'queues',
+    explanation: 'Exclusive queues always deliver messages in the order they are received, with only one active consumer.'
+  },
+  {
+    id: 'queues-28',
+    question: 'Which queue types support queue browsing?',
+    options: [
+      'All queue types',
+      'Exclusive and non-exclusive non-partitioned queues',
+      'Only partitioned queues',
+      'Only anonymous queues'
+    ],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    topic: 'queues',
+    explanation: 'Queue browsing is supported for exclusive queues and non-exclusive non-partitioned queues, but not partitioned queues.'
+  },
+  {
+    id: 'queues-29',
+    question: 'How does the event broker assign messages to partitions in a partitioned queue?',
+    options: [
+      'Round-robin distribution',
+      'Hash of partition key MOD partition count',
+      'Based on message size',
+      'Random assignment'
+    ],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    topic: 'queues',
+    explanation: 'The broker calculates: partition = partition-key-hash MOD partition-count to determine which partition receives each message.'
+  },
+  {
+    id: 'queues-30',
+    question: 'How do you configure a queue as a last value queue?',
+    options: [
+      'Set queue priority to maximum',
+      'Set max-spool-usage (or Messages Queued Quota) to 0',
+      'Enable exclusive access mode',
+      'Disable message persistence'
+    ],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    topic: 'queues',
+    explanation: 'A last value queue is created by setting max-spool-usage to 0, which makes the queue spool only the last message received.'
+  },
+  {
+    id: 'queues-31',
+    question: 'What happens when a message moved to a DMQ becomes dead again?',
+    options: [
+      'Moved to a secondary DMQ',
+      'It is deleted (no DMQ chaining)',
+      'Sent back to original queue',
+      'Stored permanently'
+    ],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    topic: 'queues',
+    explanation: 'There is no chaining of DMQ behavior. If a message in the DMQ becomes dead again, it is deleted.'
+  },
+  {
+    id: 'queues-32',
+    question: 'What is a well-known queue in Solace?',
+    options: [
+      'A queue used by admin only',
+      'A queue with a commonly recognized name specified by the application',
+      'The default system queue',
+      'A high-priority queue'
+    ],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    topic: 'queues',
+    explanation: 'A well-known queue has a commonly recognized name specified by the application, allowing applications to send messages to it without coordination.'
+  },
+  {
+    id: 'queues-33',
+    question: 'What triggers partition rebalancing in a partitioned queue?',
+    options: [
+      'Message rate exceeds threshold',
+      'Number of consumers (bound flows) changes',
+      'Queue reaches capacity',
+      'Broker restart'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'queues',
+    explanation: 'Partition rebalancing is triggered when the number of consumers changes, reassigning partition-to-flow mappings to distribute flows evenly.'
+  },
+  {
+    id: 'queues-34',
+    question: 'Do partitioned queues support queue browsing?',
+    options: [
+      'Yes, for all partitions',
+      'No, queue browsing is not supported for partitioned queues',
+      'Only for the parent queue',
+      'Only with admin privileges'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'queues',
+    explanation: 'Queue browsing is not supported for partitioned queues. The event broker rejects browsing flow bind requests to partitioned queues.'
+  },
+  {
+    id: 'queues-35',
+    question: 'What is the difference between key-to-partition mapping and partition-to-flow mapping?',
+    options: [
+      'They are the same thing',
+      'Key-to-partition maps messages to partitions; partition-to-flow maps partitions to consumers',
+      'One is for Direct, one is for Guaranteed',
+      'One is for HA, one is for DR'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'queues',
+    explanation: 'Key-to-partition mapping determines which partition receives messages based on partition key hash. Partition-to-flow mapping assigns partitions to consumer flows.'
+  },
 
   // More Replay Questions
   {
