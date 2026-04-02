@@ -25,7 +25,7 @@ An arcade-style trivia game to test your Solace knowledge! Built with React, Typ
   - ⏭️ **Skip** - Skip a question without penalty
 
 - **Achievement System** with 15 badges to unlock
-- **Global Leaderboard** with top 20 high scores
+- **Global Leaderboard** with top 30 high scores
 - **Shareable Score Cards** for LinkedIn and social media
 - **Retro Arcade Aesthetics** with neon colors, pixel fonts, and CRT effects
 - **Sound Effects & Music** for immersive gameplay
