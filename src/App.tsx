@@ -8,13 +8,14 @@ import { PowerUps } from './components/game/PowerUps';
 import { LevelProgress } from './components/game/LevelProgress';
 import { LevelComplete } from './components/game/LevelComplete';
 import { GameOver } from './components/results/GameOver';
+import { Leaderboard } from './components/results/Leaderboard';
 import { PixelButton } from './components/ui/PixelButton';
 import { SolaceLogo } from './components/ui/SolaceLogo';
 import { SollyWaving } from './components/ui/Solly';
 import { LEVELS } from './data/questions';
 import { audioService } from './services/audio';
 
-type Screen = 'entry' | 'menu' | 'instructions' | 'playing' | 'levelComplete' | 'gameOver';
+type Screen = 'entry' | 'menu' | 'instructions' | 'leaderboard' | 'playing' | 'levelComplete' | 'gameOver';
 
 function GameContent() {
   const { 
@@ -238,6 +239,15 @@ function GameContent() {
                 >
                   START GAME
                 </PixelButton>
+                
+                <PixelButton
+                  variant="primary"
+                  size="lg"
+                  fullWidth
+                  onClick={() => setScreen('leaderboard')}
+                >
+                  🏆 VIEW LEADERBOARD
+                </PixelButton>
               </div>
 
               {/* Game info */}
@@ -245,6 +255,36 @@ function GameContent() {
                 <p>10 Levels • 60 seconds each</p>
                 <p>Test your Solace knowledge!</p>
               </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Leaderboard screen */}
+        {screen === 'leaderboard' && (
+          <motion.div
+            key="leaderboard"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="min-h-screen flex items-center justify-center p-4"
+          >
+            <div className="w-full max-w-6xl">
+              {/* Back button */}
+              <div className="mb-6 flex justify-center">
+                <PixelButton
+                  variant="secondary"
+                  onClick={() => setScreen('menu')}
+                >
+                  ← BACK TO MENU
+                </PixelButton>
+              </div>
+              
+              {/* Leaderboard */}
+              <Leaderboard 
+                currentPlayerId={state.player?.id}
+                currentNickname={state.player?.nickname}
+                autoRefresh={true}
+              />
             </div>
           </motion.div>
         )}

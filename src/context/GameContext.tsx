@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer, useCallback, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { GameState, GameAction, Player, PowerUp, Question, GameStats } from '../types';
+import { GameState, GameAction, Player, PowerUp, Question, GameStats, LeaderboardEntry } from '../types';
 import { getQuestionsForLevel, LEVELS } from '../data/questions';
 import { checkAchievements } from '../data/achievements';
 import { calculateScore, canAdvanceToNextLevel } from '../services/scoring';
@@ -9,6 +9,7 @@ import {
   savePlayerLocally, 
   getLocalPlayer,
 } from '../services/storage';
+import { submitScore, isTopScore } from '../services/leaderboard';
 
 // Initial power-ups
 const INITIAL_POWER_UPS: PowerUp[] = [
@@ -60,6 +61,7 @@ const initialState: GameState = {
   newAchievements: [],
   isMuted: false,
   musicEnabled: false,
+  leaderboardStatus: 'idle',
 };
 
 // Game reducer
@@ -217,6 +219,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
 
       const questions = getQuestionsForLevel(nextLevel, state.usedQuestionIds);
+      
+      // Defensive check: If no questions available, end game gracefully instead of blank screen
+      if (questions.length === 0) {
+        console.warn(`No questions available for level ${nextLevel}. Ending game.`);
+        return { ...state, status: 'gameOver' };
+      }
+      
       const newQuestionIds = questions.map(q => q.id);
       const levelConfig = LEVELS[nextLevel - 1];
 
@@ -290,6 +299,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'TOGGLE_MUSIC':
       return { ...state, musicEnabled: !state.musicEnabled };
+
+    case 'SET_LEADERBOARD_STATUS':
+      return { ...state, leaderboardStatus: action.payload };
 
     case 'RESET_GAME':
       return {
@@ -550,6 +562,39 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // Save locally
     savePlayerLocally(updatedPlayer);
     dispatch({ type: 'SET_PLAYER', payload: updatedPlayer });
+
+    // Submit to global leaderboard (fire-and-forget)
+    if (state.score > 0) {
+      try {
+        dispatch({ type: 'SET_LEADERBOARD_STATUS', payload: 'submitting' });
+        
+        // Check if score qualifies for top 30
+        const qualifies = await isTopScore(state.score);
+        
+        if (qualifies) {
+          const leaderboardEntry: LeaderboardEntry = {
+            id: updatedPlayer.id,
+            nickname: updatedPlayer.nickname,
+            score: state.score,
+            level: state.currentLevel,
+            achievementCount: updatedPlayer.achievements.length,
+            submittedAt: new Date().toISOString(),
+          };
+          
+          const success = await submitScore(leaderboardEntry);
+          dispatch({ 
+            type: 'SET_LEADERBOARD_STATUS', 
+            payload: success ? 'success' : 'error' 
+          });
+        } else {
+          // Score doesn't qualify, but that's okay
+          dispatch({ type: 'SET_LEADERBOARD_STATUS', payload: 'idle' });
+        }
+      } catch (error) {
+        console.error('Failed to submit score to leaderboard:', error);
+        dispatch({ type: 'SET_LEADERBOARD_STATUS', payload: 'error' });
+      }
+    }
   }, [state.player, state.score, state.currentLevel, getGameStats]);
 
   const contextValue: GameContextType = {

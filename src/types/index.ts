@@ -42,6 +42,20 @@ export interface Player {
   gamesPlayed: number;
 }
 
+export interface LeaderboardEntry {
+  id: string; // player ID
+  nickname: string;
+  score: number; // totalScore
+  level: number; // highestLevel reached
+  achievementCount: number;
+  submittedAt: string; // ISO date string
+}
+
+export interface LeaderboardData {
+  entries: LeaderboardEntry[];
+  lastUpdated: string;
+}
+
 export interface Achievement {
   id: string;
   name: string;
@@ -113,6 +127,9 @@ export interface GameState {
   // Audio
   isMuted: boolean;
   musicEnabled: boolean;
+  
+  // Leaderboard
+  leaderboardStatus: 'idle' | 'submitting' | 'success' | 'error';
 }
 
 export type GameAction =
@@ -134,4 +151,5 @@ export type GameAction =
   | { type: 'UNLOCK_ACHIEVEMENT'; payload: Achievement }
   | { type: 'TOGGLE_MUTE' }
   | { type: 'TOGGLE_MUSIC' }
+  | { type: 'SET_LEADERBOARD_STATUS'; payload: 'idle' | 'submitting' | 'success' | 'error' }
   | { type: 'RESET_GAME' };

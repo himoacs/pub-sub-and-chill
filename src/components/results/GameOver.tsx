@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
 import { PixelButton } from '../ui/PixelButton';
 import { ScoreCard } from './ScoreCard';
+import { Leaderboard } from './Leaderboard';
 import { useGame } from '../../context/GameContext';
 import { audioService } from '../../services/audio';
 
@@ -64,13 +65,15 @@ export function GameOver({
         </div>
       )}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md"
-      >
-        {/* Header */}
-        <div className="text-center mb-3 md:mb-6">
+      <div className="w-full max-w-6xl flex flex-col items-center gap-6">
+        {/* Score Card Section - Narrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-md"
+        >
+          {/* Header */}
+          <div className="text-center mb-3 md:mb-6">
           <motion.h1
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
@@ -147,6 +150,35 @@ export function GameOver({
           </PixelButton>
         </div>
       </motion.div>
+
+      {/* Leaderboard Section - Full Width */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="w-full"
+      >
+        {/* Leaderboard status message */}
+        {state.leaderboardStatus === 'success' && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mb-4 bg-arcade-green/20 border-2 border-arcade-green p-3 text-center max-w-2xl mx-auto"
+          >
+            <p className="font-pixel text-sm text-arcade-green">
+              🏆 You made the global leaderboard!
+            </p>
+          </motion.div>
+        )}
+
+        {/* Global Leaderboard */}
+        <Leaderboard 
+          currentPlayerId={state.player?.id}
+          currentNickname={state.player?.nickname}
+          autoRefresh={false}
+        />
+      </motion.div>
+      </div>
     </div>
   );
 }

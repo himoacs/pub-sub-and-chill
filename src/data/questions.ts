@@ -3525,6 +3525,380 @@ export const QUESTIONS: Question[] = [
     topic: 'dr',
     explanation: 'Failback restores operations to the primary site once it is recovered.'
   },
+
+  // ==================== NEW HARD PROTOCOL QUESTIONS ====================
+  {
+    id: 'protocols-27',
+    question: 'What is message compression in SMF and when should it be used?',
+    options: [
+      'Automatic compression of all messages',
+      'Publisher can request payload compression to reduce bandwidth at CPU cost',
+      'Only works with guaranteed messages',
+      'Compression is always disabled'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'SMF supports optional message compression where publishers can compress payloads to save bandwidth at the expense of CPU processing.'
+  },
+  {
+    id: 'protocols-28',
+    question: 'What is the typical maximum message size for SMF protocol?',
+    options: [
+      '100 KB',
+      '1 MB',
+      'Configurable per broker, typically 10-100 MB',
+      'Always unlimited'
+    ],
+    correctAnswer: 2,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'Maximum message size is broker-configurable, with typical limits ranging from 10 MB to 100 MB depending on the broker type and configuration.'
+  },
+  {
+    id: 'protocols-29',
+    question: 'What is the recommended API client connection retry strategy?',
+    options: [
+      'Retry immediately without delay',
+      'Exponential backoff with jitter to avoid thundering herd',
+      'Never retry automatically',
+      'Fixed 1-second interval retries'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'Best practice is exponential backoff with random jitter to prevent many clients from retrying simultaneously and overwhelming the broker.'
+  },
+  {
+    id: 'protocols-30',
+    question: 'What is the purpose of session keepalive in client connections?',
+    options: [
+      'Increases message throughput',
+      'Detects broken connections and prevents idle session timeout',
+      'Encrypts the connection',
+      'Enables compression'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'Keepalive messages detect network failures and prevent sessions from timing out due to inactivity, maintaining connection health.'
+  },
+  {
+    id: 'protocols-31',
+    question: 'What is WebSocket subprotocol negotiation in Solace?',
+    options: [
+      'HTTP basic authentication',
+      'Client and broker agree on messaging protocol (SMF, MQTT) over WebSocket',
+      'TLS handshake',
+      'Topic subscription'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'WebSocket supports subprotocol negotiation where client and broker agree on which messaging protocol (SMF, MQTT, etc.) to use over the WebSocket connection.'
+  },
+  {
+    id: 'protocols-32',
+    question: 'What happens when AMQP and SMF clients publish to the same queue?',
+    options: [
+      'Messages are rejected',
+      'Protocol translation occurs seamlessly; consumers receive messages regardless of publisher protocol',
+      'Only AMQP messages are stored',
+      'Requires manual conversion'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'Solace performs transparent protocol translation, allowing AMQP and SMF (or any protocol) to interoperate through the same queues and topics.'
+  },
+  {
+    id: 'protocols-33',
+    question: 'What is the benefit of using native APIs (JCSMP, C, .NET) over JMS?',
+    options: [
+      'JMS is always faster',
+      'Native APIs expose all Solace features and offer better performance',
+      'Native APIs only work on-premises',
+      'JMS has more features'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'Native APIs like JCSMP provide access to all Solace features and optimizations not available in the JMS standard, offering superior performance.'
+  },
+  {
+    id: 'protocols-34',
+    question: 'How does Solace handle REST messaging when the broker is overwhelmed?',
+    options: [
+      'REST clients are never slowed down',
+      'Returns HTTP 503 Service Unavailable to signal backpressure',
+      'REST always uses guaranteed delivery',
+      'Messages are automatically compressed'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'protocols',
+    explanation: 'When the broker cannot accept more REST messages due to overload, it returns HTTP 503 to signal backpressure to publishing clients.'
+  },
+
+  // ==================== NEW HARD OVERVIEW/ARCHITECTURE QUESTIONS ====================
+  {
+    id: 'overview-26',
+    question: 'What is the difference between event-driven choreography and orchestration?',
+    options: [
+      'They are the same',
+      'Choreography is decentralized (services react to events); orchestration is centralized (controller directs)',
+      'Choreography is slower',
+      'Orchestration uses topics, choreography uses queues'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Choreography allows services to independently react to events without central control, while orchestration uses a central controller to direct workflow.'
+  },
+  {
+    id: 'overview-27',
+    question: 'What is the recommended hub-and-spoke event mesh topology?',
+    options: [
+      'All brokers connect to all others',
+      'Regional brokers connect to a central hub broker for cross-region traffic',
+      'Single broker only',
+      'Each application has its own broker'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Hub-and-spoke topology uses regional brokers for local traffic, with connections to a central hub for cross-region event distribution.'
+  },
+  {
+    id: 'overview-28',
+    question: 'What is Message VPN segmentation used for?',
+    options: [
+      'Improving performance only',
+      'Logical multi-tenancy: isolating different applications, teams, or customers',
+      'Message compression',
+      'Load balancing'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Message VPNs provide logical segmentation for multi-tenancy, allowing isolation of different applications, business units, or customers on the same broker.'
+  },
+  {
+    id: 'overview-29',
+    question: 'What determines the maximum number of client connections per Message VPN?',
+    options: [
+      'Always unlimited',
+      'Configurable limits based on broker resources and licensing',
+      'Fixed at 1000 connections',
+      'Fixed at 100 connections'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Connection limits are configurable per VPN based on broker capacity and licensing, with software brokers supporting thousands to hundreds of thousands of connections.'
+  },
+  {
+    id: 'overview-30',
+    question: 'What is the purpose of client username and client profile separation in Solace?',
+    options: [
+      'They are the same thing',
+      'Usernames authenticate identity; profiles define authorization and resource limits',
+      'Profiles are only for administrators',
+      'Usernames set message priority'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Client usernames handle authentication (who you are), while client profiles define authorization and resource quotas (what you can do).'
+  },
+  {
+    id: 'overview-31',
+    question: 'What are event mesh data governance policies used for?',
+    options: [
+      'Improving message speed',
+      'Enforcing rules about which events can flow between domains and regions',
+      'Compressing messages',
+      'Only for billing purposes'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Governance policies control event distribution across the mesh, enforcing data sovereignty, security boundaries, and regulatory compliance.'
+  },
+  {
+    id: 'overview-32',
+    question: 'What is the Solace Event Portal runtime governance feature?',
+    options: [
+      'Code compilation',
+      'Comparing actual runtime message flows against designed event architecture',
+      'Database management',
+      'Network monitoring only'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Event Portal runtime governance validates that actual event flows in production match the documented event architecture and policies.'
+  },
+  {
+    id: 'overview-33',
+    question: 'What is the recommended topic namespace strategy for enterprise-scale deployments?',
+    options: [
+      'Single flat namespace',
+      'Hierarchical with domain/application/object/action/version structure',
+      'Random topic names',
+      'Numeric IDs only'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'overview',
+    explanation: 'Best practice is hierarchical topics like domain/app/object/action/version (e.g., finance/trading/order/created/v1) for scalability and governance.'
+  },
+
+  // ==================== NEW HARD REPLAY QUESTIONS ====================
+  {
+    id: 'replay-26',
+    question: 'How is the maximum replay log size configured?',
+    options: [
+      'Always fixed at 1 GB',
+      'Configured using max-spool-usage parameter, limited by available disk',
+      'Unlimited storage',
+      'Fixed at 100 MB'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'Replay log size is configured via max-spool-usage parameter in MB, limited by available persistent storage on the broker.'
+  },
+  {
+    id: 'replay-27',
+    question: 'How does replay log trimming work when the log is full?',
+    options: [
+      'All messages are deleted',
+      'Oldest messages are removed first (FIFO) to make space for new messages',
+      'Newest messages are deleted',
+      'Replay is disabled'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'When the replay log reaches capacity, the oldest messages are trimmed first (FIFO) to maintain recent message history.'
+  },
+  {
+    id: 'replay-28',
+    question: 'How is replay log data migrated during broker upgrades?',
+    options: [
+      'Replay logs must be manually exported',
+      'Replay logs are preserved as part of message spool and migrate automatically',
+      'Replay logs are always deleted during upgrades',
+      'Migration requires service interruption'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'Replay logs are part of the message spool storage and are automatically preserved during broker upgrades without data loss.'
+  },
+  {
+    id: 'replay-29',
+    question: 'What happens to the replay log during HA failover?',
+    options: [
+      'Replay log is lost',
+      'Replay log is synchronized to backup and available after failover',
+      'Replay must be reconfigured',
+      'Replay is disabled permanently'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'Replay logs are part of guaranteed message storage and are synchronized to HA backup, remaining available after failover.'
+  },
+  {
+    id: 'replay-30',
+    question: 'How is replay performance optimized for high message rates?',
+    options: [
+      'Replay always uses maximum speed',
+      'Sequential disk reads and optional rate limiting are used',
+      'Replay requires message compression',
+      'Performance cannot be controlled'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'Replay performance can be rate-limited, and brokers optimize sequential disk reads from replay logs for efficient high-throughput replay.'
+  },
+  {
+    id: 'replay-31',
+    question: 'What is time-based retention for replay logs?',
+    options: [
+      'Messages cannot have age limits',
+      'Messages older than a configured age threshold are automatically trimmed',
+      'Only applies to new messages',
+      'Time retention is always 24 hours'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'replay',
+    explanation: 'Replay logs support time-based retention where messages exceeding a configured age are automatically trimmed regardless of log size.'
+  },
+
+  // ==================== NEW HARD DELIVERY QUESTIONS ====================
+  {
+    id: 'delivery-28',
+    question: 'What is the publisher flow control window in guaranteed messaging?',
+    options: [
+      'Window size has no effect',
+      'Limits outstanding unacknowledged published messages before blocking publisher',
+      'Controls message size',
+      'Only for Direct messages'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'delivery',
+    explanation: 'Publisher window size limits how many messages can be in-flight (unacknowledged by broker) before the publisher blocks, providing flow control.'
+  },
+  {
+    id: 'delivery-29',
+    question: 'What is the primary latency difference between Direct and Guaranteed messaging?',
+    options: [
+      'Direct is always slower',
+      'Direct has lower latency as messages stay in memory; Guaranteed writes to disk',
+      'Both have identical latency',
+      'Guaranteed is faster due to batching'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'delivery',
+    explanation: 'Direct messaging has lower latency because messages remain in memory, while Guaranteed messaging persists messages to disk for durability, adding latency.'
+  },
+
+  // ==================== NEW HARD HA QUESTIONS ====================
+  {
+    id: 'ha-26',
+    question: 'What is Assured Delivery (AD) mode in HA?',
+    options: [
+      'Asynchronous replication',
+      'Synchronous replication ensuring messages are replicated to backup before publisher acknowledgment',
+      'Direct messages only',
+      'Manual replication'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'ha',
+    explanation: 'AD mode ensures zero message loss by synchronously replicating guaranteed messages to backup before acknowledging to publishers.'
+  },
+  {
+    id: 'ha-27',
+    question: 'What configuration is synchronized between HA pair brokers?',
+    options: [
+      'Only VPN names',
+      'All Message VPN, client, queue, and topic endpoint configurations',
+      'Only queue subscriptions',
+      'Nothing is synchronized'
+    ],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    topic: 'ha',
+    explanation: 'HA pairs synchronize all configuration including Message VPNs, clients, queues, topic endpoints, and ACL profiles between active and backup.'
+  },
 ];
 
 // Shuffle array using Fisher-Yates algorithm

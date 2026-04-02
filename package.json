@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/himoacs/pub-sub-and-chill#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.101.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
