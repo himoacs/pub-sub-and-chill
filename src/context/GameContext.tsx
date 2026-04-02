@@ -578,6 +578,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             score: state.score,
             level: state.currentLevel,
             achievementCount: updatedPlayer.achievements.length,
+            longestStreak: state.longestStreak,
             submittedAt: new Date().toISOString(),
           };
           

@@ -48,6 +48,7 @@ export interface LeaderboardEntry {
   score: number; // totalScore
   level: number; // highestLevel reached
   achievementCount: number;
+  longestStreak: number;
   submittedAt: string; // ISO date string
 }
 

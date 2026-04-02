@@ -36,6 +36,7 @@ export async function fetchLeaderboard(): Promise<LeaderboardData> {
       score: row.score,
       level: row.level,
       achievementCount: row.achievement_count,
+      longestStreak: row.longest_streak || 0,
       submittedAt: row.submitted_at,
     }));
 
@@ -80,6 +81,7 @@ export async function submitScore(entry: LeaderboardEntry): Promise<boolean> {
       score: entry.score,
       level: entry.level,
       achievement_count: entry.achievementCount,
+      longest_streak: entry.longestStreak,
       submitted_at: new Date().toISOString(),
     };
 

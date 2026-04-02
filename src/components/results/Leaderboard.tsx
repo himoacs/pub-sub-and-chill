@@ -238,9 +238,20 @@ export function Leaderboard({
                   <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-1 text-[10px] md:text-xs text-gray-400 font-pixel">
                     <span>Lvl {entry.level}</span>
                     {entry.achievementCount > 0 && (
-                      <span className="flex items-center gap-1">
-                        🏅 {entry.achievementCount}
-                      </span>
+                      <>
+                        <span className="text-gray-500">•</span>
+                        <span className="flex items-center gap-1">
+                          🏅 {entry.achievementCount}
+                        </span>
+                      </>
+                    )}
+                    {entry.longestStreak > 0 && (
+                      <>
+                        <span className="text-gray-500">•</span>
+                        <span className="flex items-center gap-1" title="Longest streak">
+                          🔥 {entry.longestStreak}
+                        </span>
+                      </>
                     )}
                     <span className="text-gray-500">•</span>
                     <span title={formatDate(entry.submittedAt)}>

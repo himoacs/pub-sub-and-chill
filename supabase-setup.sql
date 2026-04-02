@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS leaderboard (
   score INTEGER NOT NULL,
   level INTEGER NOT NULL,
   achievement_count INTEGER DEFAULT 0,
+  longest_streak INTEGER DEFAULT 0,
   submitted_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT unique_player UNIQUE (player_id)
 );
