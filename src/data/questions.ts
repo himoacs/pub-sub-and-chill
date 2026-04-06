@@ -3543,17 +3543,17 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'protocols-28',
-    question: 'What is the typical maximum message size for SMF protocol?',
+    question: 'What is the maximum Guaranteed message size supported by Solace event brokers?',
     options: [
       '100 KB',
       '1 MB',
-      'Configurable per broker, typically 10-100 MB',
-      'Always unlimited'
+      '10 MB',
+      '30 MB'
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     difficulty: 'hard',
     topic: 'protocols',
-    explanation: 'Maximum message size is broker-configurable, with typical limits ranging from 10 MB to 100 MB depending on the broker type and configuration.'
+    explanation: 'Solace event brokers support Guaranteed messages up to 30 MB in size.'
   },
   {
     id: 'protocols-29',
